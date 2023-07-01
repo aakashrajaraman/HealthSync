@@ -1,52 +1,69 @@
 import React, { useState } from 'react';
-import "../styles/login-styles.css";
+import '../styles/login-styles.css'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState('');
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleUserTypeChange = (e) => {
+    setUserType(e.target.value);
   };
 
   const handleLogin = () => {
-    // Here you can add your logic for handling login
-    console.log('Login clicked');
-    console.log('Email:', email);
-    console.log('Password:', password);
+    // Logic for handling login
+  };
+
+  const handleRegistration = () => {
+    if (userType === 'patient') {
+      // Logic for registering as a patient
+    } else if (userType === 'practitioner') {
+      // Logic for registering as a practitioner
+    }
   };
 
   return (
-    <div>
-      <h2>Login Page</h2>
-      <form>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-            placeholder="Enter your email"
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            placeholder="Enter your password"
-          />
-        </div>
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
+    <>
+    <h1 className='heading'> HealthSync</h1>
+  <div class="container" id="container">
+  
+  
+    <div class="form sign_in">
+      <form action="#">
+        <h1>Login</h1>
+       
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <button className='login'>Login</button>
       </form>
     </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-pannel overlay-left">
+          <h1>Already have an account</h1>
+          <p>Please Login</p>
+          <button id="signIn" class="overBtn">SignIn</button>
+        </div>
+        <div class="overlay-pannel overlay-right">
+          <h1>Create Account</h1>
+          <p>Start Your Journey with Us</p>
+          <button className='clinic-reg'> Onboard Your Clinic</button>
+          <button className='patient-reg'> Sign-Up as a Patient</button>
+        <button className='practioner-reg'> Sign-Up as a Practioner</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</>
+
   );
 };
 
