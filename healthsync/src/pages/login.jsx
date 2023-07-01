@@ -1,6 +1,27 @@
 import React, { useState } from 'react';
 import '../styles/login-styles.css'
 
+
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyA8nPejv9xijoHDooiF-n6aWTEokgh8A9k",
+    authDomain: "healthsync-c9b49.firebaseapp.com",
+    projectId: "healthsync-c9b49",
+    storageBucket: "healthsync-c9b49.appspot.com",
+    messagingSenderId: "109254376080",
+    appId: "1:109254376080:web:a4e3f9de4d48126f2f3615",
+    measurementId: "G-YB9ZCMTHLH"
+  };
+
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,8 +60,14 @@ const LoginPage = () => {
     <div class="form sign_in">
       <form action="#">
         <h1>Login</h1>
-       
-        <input type="email" placeholder="Email" />
+        <div className="form-group user-type-select">
+          <label>Login as:     </label>
+          <select value={userType} onChange={handleUserTypeChange}>
+            <option value="practitioner">Practitioner</option>
+            <option value="patient">Patient</option>
+          </select>
+        </div>
+        <input type="email" placeholder="Patient/Pracitioner ID" />
         <input type="password" placeholder="Password" />
         <button className='login'>Login</button>
       </form>

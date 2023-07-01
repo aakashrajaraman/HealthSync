@@ -56,6 +56,12 @@ form {
   height: 100%;
   text-align: center;
 }
+select{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font: "Nunito" sans-serif;
+
+}
 /* form */
 /* input fields */
 input {
@@ -145,6 +151,7 @@ button:hover::before {
 button:active {
   background: linear-gradient(90deg, #4158d0, #f441a5, #ffcc70, #4158d0);
 }
+
 
 /* button */
 
