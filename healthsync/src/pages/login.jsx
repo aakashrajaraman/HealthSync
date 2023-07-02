@@ -6,7 +6,6 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 
@@ -21,6 +20,7 @@ const firebaseConfig = {
     appId: "1:109254376080:web:a4e3f9de4d48126f2f3615",
     measurementId: "G-YB9ZCMTHLH"
   };
+  firebase.initializeApp(firebaseConfig);
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
