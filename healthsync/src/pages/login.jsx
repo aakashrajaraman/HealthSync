@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/login-styles.css'
 
 
@@ -7,6 +7,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+
 
 
 
@@ -21,35 +22,51 @@ const firebaseConfig = {
     measurementId: "G-YB9ZCMTHLH"
   };
   firebase.initializeApp(firebaseConfig);
+  const firestore = firebase.firestore();
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('');
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const [userType, setUserType] = useState('patient');
+  
+  
 
   const handleUserTypeChange = (e) => {
     setUserType(e.target.value);
   };
 
-  const handleLogin = () => {
-    // Logic for handling login
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const id = document.querySelector('#id').value;
+    const password = document.querySelector('#password').value;
+    let collectionName = '';
+    if (userType === 'practitioner') {
+      collectionName = 'practitioners';
+    }else if(userType === 'patient'){
+      collectionName = 'patients';
+    }
+
+   const loginInfo = firestore.collection(collectionName);
+
+   //query
+   loginInfo.where('id', '==', id).where('password', '==', password).get().then((querySnapshot) => {
+    if (querySnapshot.empty) {
+      alert('Invalid Credentials');
+      //reset form
+    } else {
+      querySnapshot.forEach((doc) => {
+        alert('Login Successful');
+        //redirect to dashboard
+      });
+    
+    }
+  });
+
+
+
   };
 
-  const handleRegistration = () => {
-    if (userType === 'patient') {
-      // Logic for registering as a patient
-    } else if (userType === 'practitioner') {
-      // Logic for registering as a practitioner
-    }
-  };
+ 
+
+ 
 
   return (
     <>
@@ -58,17 +75,17 @@ const LoginPage = () => {
   
   
     <div class="form sign_in">
-      <form action="#">
+      <form onSubmit={handleLogin}>
         <h1>Login</h1>
         <div className="form-group user-type-select">
           <label>Login as:     </label>
           <select value={userType} onChange={handleUserTypeChange}>
-            <option value="practitioner">Practitioner</option>
             <option value="patient">Patient</option>
+            <option value="practitioner">Practitioner</option>
           </select>
         </div>
-        <input type="email" placeholder="Patient/Pracitioner ID" />
-        <input type="password" placeholder="Password" />
+        <input type="text" placeholder="Patient/Pracitioner ID" id = "id" />
+        <input type="password" placeholder="Password" id = "password" />
         <button className='login'>Login</button>
       </form>
     </div>
@@ -93,5 +110,10 @@ const LoginPage = () => {
 
   );
 };
+
+
+
+
+
 
 export default LoginPage;
