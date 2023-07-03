@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/login-styles.css'
-
+import { Link } from 'react-router-dom';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
@@ -51,6 +51,7 @@ const LoginPage = () => {
     if (querySnapshot.empty) {
       alert('Invalid Credentials');
       //reset form
+      
     } else {
       querySnapshot.forEach((doc) => {
         alert('Login Successful');
@@ -75,7 +76,7 @@ const LoginPage = () => {
   
   
     <div class="form sign_in">
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className='form-2'>
         <h1>Login</h1>
         <div className="form-group user-type-select">
           <label>Login as:     </label>
@@ -99,7 +100,7 @@ const LoginPage = () => {
         <div class="overlay-pannel overlay-right">
           <h1>Create Account</h1>
           <p>Start Your Journey with Us</p>
-          <button className='clinic-reg'> Onboard Your Clinic</button>
+          <Link to = "/clinicRegistration"><button className='clinic-reg'> Onboard Your Clinic</button></Link>
           <button className='patient-reg'> Sign-Up as a Patient</button>
         <button className='practioner-reg'> Sign-Up as a Practioner</button>
         </div>

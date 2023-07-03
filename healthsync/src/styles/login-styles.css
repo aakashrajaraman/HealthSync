@@ -46,7 +46,7 @@ a {
 }
 
 /* form */
-form {
+.form-2 {
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -54,6 +54,7 @@ form {
   flex-direction: column;
   padding: 0 3rem;
   height: 100%;
+  
   text-align: center;
 }
 select{

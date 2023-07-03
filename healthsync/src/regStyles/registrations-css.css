@@ -1,0 +1,83 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(123deg, #71b8e7,#9b59b6);
+}
+.container-1{
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+.container-1  .title{
+    font-size: 25px;
+    font-weight: 500; 
+    position: relative;
+    padding-bottom: 3%;
+}
+
+.form-1 .user_details{
+    display: flex;
+    flex-wrap: wrap;
+}
+.form-1 .user_details .input_box{
+    
+    margin: 20px 0 12px 0;
+    margin-bottom: 10%;
+    width: calc(100% / 2 - 20px);
+}
+.user_details .input_box .details{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.user_details .input_box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+
+}
+.user_details .input_box input:focus,
+.user_details .input_box input:valid{
+border-color: #9b59b6;
+}
+.form-1 input[type="radio"]{
+    display: none;
+}
+.form-1 .button{
+    height: 45px;
+    margin: 45px 0;
+}
+.form-1 .button input{
+    height: 100%;
+    width: 40%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background: linear-gradient(123deg, #71b8e7,#9b59b6);
+
+}
+.form-1 .button input :hover{
+    background: linear-gradient(-123deg, #71b8e7,#9b59b6);
+}
