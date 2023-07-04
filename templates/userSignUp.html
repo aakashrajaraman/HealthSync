@@ -1,0 +1,64 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='/userSignUp.css')}}">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+  <form action="{{url_for('userSignUp')}}" method="post">
+  
+    <h1>Enter Your Information:</h1>
+    
+    <fieldset>
+      <!-- all are required-->
+      <legend><span class="number">1</span>Your Basic Info</legend>
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username"required >
+      
+      <label for="mail">Primary Email:</label>
+      <input type="email" id="mail" name="user_email">
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password"required>
+
+      <label for="address">Your Address:</label>
+      <input type="text" id="address" name="address"required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone"required>
+      
+      <label>Date of Birth:</label>
+      <input type="date" id="number" name="date"required>
+      <label>Aadhaar No.:</label>
+      <input type="password" id="Aadhaar" name="aadhaar"required>
+    </fieldset>
+    
+    <fieldset>
+      <legend><span class="number">2</span>Your History</legend>
+      <label for="bio">Any Prior Medical History: </label>
+      <textarea id="bio" name="user_bio" required>Any prescriptions, diagnoses, illnesses, family history...</textarea>
+    </fieldset>
+    <fieldset>
+    <label for="job">Occupation:</label>
+    <input type="text" id="job" name="user_job"required>
+    
+      <label>Select all that apply to you:</label>
+      <input type="checkbox"  value="Drinking" name="checkbox"><label class="light" for="drinking">Drinking</label><br>
+      <input type="checkbox"  value="Smoking" name="checkbox"><label class="light" for="smoking">Smoking</label><br>
+      <input type="checkbox"  value="Drugs" name="checkbox"><label class="light" for="Drugs">Drugs</label><br>
+      <input type="checkbox"  value="Regular_Exercise" name="checkbox"><label class="light" for="Regular_Exercise">Regular Exercise</label><br>
+      <input type="checkbox"  value="Health_Insurance" name="checkbox"><label class="light" for="Health_Insurance">Health Insurance</label><br>
+    
+    </fieldset>
+    <button type="submit">Sign Up</button>
+  </form>
+  
+</body>
+</html>

@@ -13,10 +13,11 @@ firebase_admin.initialize_app(cred)
 
 app = Flask(__name__)
 app.secret_key = "HealthSync"
+firestoreDB = firestore.client()
 
 @app.route('/', methods = ['GET'])
 def index():
-    return render_template('login.html')
+    return render_template('userSignUp.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -28,7 +29,7 @@ def login():
             collection = "patients"
         elif userType == 'clinic':
             collection = "clinics"
-        user_ref = firestore.client().collection(collection)
+        user_ref = firestoreDB.collection(collection)
         query = user_ref.where('id', '==', id).limit(1).stream()
         for doc in query:
                 user_data = doc.to_dict()
@@ -44,6 +45,35 @@ def logout():
     session.pop('user_id', None)
     return redirect(url_for('login'))
 #should go to the respective dashboard
+    return render_template('login.html')
+@app.route('/userSignUp', methods =['POST'])
+def userSignUp():
+    name = request.form['name']
+    username = request.form['username']
+    user_email = request.form['user_email']
+    password = request.form['password']
+    address = request.form['address']
+    phone = request.form['phone']
+    date = request.form['date']
+    aadhaar = request.form['aadhaar']
+    user_bio = request.form['user_bio']
+    user_job = request.form['user_job']
+    checkbox_values = request.form.getlist('checkbox')
+    patient_data = {
+        'name': name,
+        'username': username,
+        'user_email': user_email,
+        'password': password,
+        'address': address,
+        'phone': phone,
+        'date': date,
+        'aadhaar': aadhaar,
+        'user_bio': user_bio,
+        'user_job': user_job,
+        'checkbox_values': checkbox_values
+    }
+    firestoreDB.collection('patients').add(patient_data)
+    print("Patient data added")
     return render_template('login.html')
 
 if __name__ == '__main__':
