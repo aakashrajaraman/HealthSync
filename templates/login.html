@@ -1,0 +1,56 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Login page</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='/login.css')}}" />
+</head>
+
+<body>
+    <h1 class="heading">HealthSync</h1>
+   <h3 class="tagline">Simple, Secure, Connective.</h3>
+  <div class="container" id="container">
+
+    <br/>
+   
+    <!-- sign Up form section end-->
+
+    <!-- sign in form section start-->
+    <div class="form sign_in">
+      <form action="{{url_for('login')}}">
+        <h1 style="margin-bottom: 0.3rem;">Login</h1>
+        <div style="display: flex; align-items: center;">
+            <label for="userType" style="margin-right: 10px;">User Type:</label>
+            <select id="userType" name = "userType">
+              <option value="patient">Patient</option>
+              <option value="practitioner">Practitioner</option>
+            </select>
+          </div>
+        <span>Login In with your Account</span>
+        <!-- input fields start -->
+        <input name = "id" type="text" placeholder="Enter Your Patient/Clinic ID">
+        <input name = "password" type="password" placeholder="Password">
+       
+        <button>Login</button>
+        <!-- input fields end -->
+      </form>
+    </div>
+    <!-- sign in form section end-->
+
+    <!-- overlay section start-->
+    <div class="overlay-container">
+      <div class="overlay">
+       
+        <div class="overlay-pannel overlay-right">
+          <h1>Create Account</h1>
+          <p>Start Your Journey with Us</p>
+          <button id="signUp" class="overBtn">Sign Up</button>
+        </div>
+      </div>
+    </div>
+    <!-- overlay section start-->
+  </div>
+</body>
+
+</html>

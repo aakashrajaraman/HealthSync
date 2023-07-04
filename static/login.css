@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  font-family: "Nunito", sans-serif;
+  height: 100vh;
+  animation: background 7s infinite;   
+}
+/* headings */
+h1 {
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.5rem;
+}
+.heading{
+    font-weight: 100;
+    font-size: 6rem;
+    font-family: "Bebas Neue", cursive;
+    color: antiquewhite;
+    margin-bottom: -1rem;
+}
+.tagline{
+    font-weight: 40;
+    font-size: 3rem;
+    font-family: "Raleway", cursive;
+    color: antiquewhite;
+    margin-bottom: 1rem;
+}
+  
+  p {
+    font-size: 0.9rem;
+    font-weight: 200;
+    line-height: 1.3em;
+    letter-spacing: 0.1em;
+    margin: 1.25rem 0;
+  }
+/* paragraphs */
+
+a {
+    color: #333;
+    font-size: 0.875rem;
+    text-decoration: none;
+    margin: 0.9375rem 0;
+  }
+
+/* form */
+form {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 3.125rem;
+    height: 100%;
+    text-align: center;
+  }
+/* form */
+/* input fields */
+input {
+    background-color: #ecececdd;
+    border: none;
+    font-size: 0.875rem;
+    padding: 0.625rem 0.75rem;
+    margin: 0.625rem 0;
+    width: 100%;
+    color: #333;
+    outline: none;
+    border-radius: 1rem;
+  }
+/* input fields */
+
+/* button */
+button {
+    text-decoration: none;
+    position: relative;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    width: 9em;
+    height: 3em;
+    line-height: 2em;
+    text-align: center;
+    background: linear-gradient(90deg, #4158d0, #f441a5, #ffcc70, #4158d0);
+    background-size: 300%;
+    border-radius: 2rem;
+    z-index: 1;
+    margin-top: 1.875rem;
+    cursor: pointer;
+  }
+  button:hover {
+    animation: ani 8s linear infinite;
+    border: none;
+  }
+
+@keyframes ani {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 200%;
+  }
+}
+
+
+button:active {
+  background: linear-gradient(90deg, #4158d0, #f441a5, #ffcc70, #4158d0);
+}
+
+/* button */
+
+/* container */
+.container {
+    background-color: #ffffff;
+    border-radius: 2rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    position: relative;
+    overflow: hidden;
+    width: 90%;
+    max-width: 40rem;
+    min-height: 30rem;
+    margin: 0 auto;
+  }
+.form {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all ease-in-out 0.6s;
+}
+.sign_up {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+.sign_in {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+  opacity: 1;
+}
+/* container */
+
+/* active container */
+.container.right-panel-active .sign_in {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.container.right-panel-active .sign_up {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: switch 0.5s;
+}
+@keyframes switch {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/* active container */
+
+/* overlay container*/
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+.overlay {
+  background-color: #4158d0;
+  background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #5c7acd 46%,
+    #60d6e3 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  color: #fff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+.overlay-pannel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 1rem;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform -0.6s ease-in-out;
+}
+.overlay-left {
+  transform: translateX(-20%);
+}
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+/* container switch */
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+@keyframes background {
+    0% {
+        background:rgb(56, 125, 185);
+    }
+    
+    50% {
+        background:rgb(136, 189, 242);
+    }
+    
+    100% {
+        background:rgb(58, 86, 185);
+    }
+}
