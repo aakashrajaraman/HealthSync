@@ -37,11 +37,13 @@ def login():
                     
                     #return redirect(url_for('protected'))
                 
-    else:
-        print("can't find form inputs")
+           
             
-
-
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    return redirect(url_for('login'))
+#should go to the respective dashboard
     return render_template('login.html')
 
 if __name__ == '__main__':
