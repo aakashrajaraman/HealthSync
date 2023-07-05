@@ -113,7 +113,6 @@ def clinicSignUp():
         'doctors': doctors,
         'prim_doc': prim_doc,
         'specialties': specialties
-
     }
 
     firestoreDB.collection('clinics').add(clinic_data)
