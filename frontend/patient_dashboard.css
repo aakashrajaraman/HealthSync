@@ -202,7 +202,7 @@ margin-right: 20px;vertical-align: text-bottom;height: 26px; }
     color: var(--white); 
 }
 .cong-box{
-	background-image: url("medical.webp");
+	background-image: url("medical.png");
 	background-size: cover;
 	height: 255px;
 	width: 55%;
@@ -326,7 +326,7 @@ table th {font-size: .85em;letter-spacing: .1em;text-transform: uppercase;}
 .t-sale{
 	width: 27%;
 	float: left;
-	height: 300px;
+	height: 325px;
 	box-shadow: var(--shadow);
 	background: var(--lightblue);
 	margin-top: 0px;
@@ -339,13 +339,15 @@ table th {font-size: .85em;letter-spacing: .1em;text-transform: uppercase;}
   height: 150px;
   background: var(--black);
   border-radius: 50%;
+  margin-left: 105px;
 }
 .circle-wrap .circle .mask,
 .circle-wrap .circle .fill {
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 140px;
   position: absolute;
   border-radius: 50%;
+  
 }
 .circle-wrap .circle .mask {
   clip: rect(0px, 150px, 150px, 75px);
@@ -364,22 +366,25 @@ table th {font-size: .85em;letter-spacing: .1em;text-transform: uppercase;}
   100% {transform: rotate(126deg);}
 }
 .circle-wrap .inside-circle {
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background: #043e5f;
-  line-height: 130px;
+  line-height: 115px;
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 100px;
   margin-left: 10px;
   position: absolute;	
   z-index: 100;
   font-weight: 700;
-  font-size: 2em;
+  font-size: 4em;
   color: var(--blue);
 }
 .head-1 {
-    font-size: 18px!important;
+    font-size: 23px!important;
+	font-weight: bold;
+
     margin: 20px 15px;
     color: var(--font-color);
     text-align: center;
@@ -576,3 +581,19 @@ table th {font-size: .85em;letter-spacing: .1em;text-transform: uppercase;}
 	line-height: 12px;
 	color: #303030;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
