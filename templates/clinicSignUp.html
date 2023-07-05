@@ -41,18 +41,14 @@
         </fieldset>
 
         <fieldset>
-            <label>Select Specializations:</label>
-            <input type="checkbox" value="General Medicine" name="specializations[]">
-            <label class="light">General Medicine</label><br>
-            <input type="checkbox" value="Dentistry" name="specializations[]">
-            <label class="light">Dentistry</label><br>
-            <input type="checkbox" value="Orthopedics" name="specializations[]">
-            <label class="light">Orthopedics</label><br>
-            <input type="checkbox" value="Pediatrics" name="specializations[]">
-            <label class="light">Pediatrics</label><br>
-            <!-- Add more specialization checkboxes as needed -->
-
+            <legend><span class="number">2</span>Specialties</legend>
+            <label>Select all specialties:</label>
+            {% for specialty in specialties %}
+            
+            <input type="checkbox" name="specialties" value="{{specialty}}"><label class="light" for="{{ specialty }}">{{ specialty }}</label><br>
+            {% endfor %}
         </fieldset>
+    </fieldset>
 
         <button type="submit">Register</button>
     </form>
