@@ -52,7 +52,13 @@ def userRedir():
     return render_template('userSignUp.html')
 @app.route('/clinicRedir', methods =['POST', 'GET'])
 def clinicRedir():
-    return render_template('clinicSignUp.html')
+    specialties = ['Dermatology', 'Allergology', 'Gastroenterology', 
+                   'Hepatology', 'Infectious Diseases', 'Endocrinology', 
+                   'Pulmonology', 'Cardiology', 'Neurology', 'Orthopedics', 
+                   'Internal Medicine', 'Proctology', 'Vascular Surgery', 
+                   'Rheumatology', 'Otolaryngology', 'Urology']
+    
+    return render_template('clinicSignUp.html', specialties = specialties)
 @app.route('/userSignUp', methods =['POST'])
 def userSignUp():
     name = request.form['name']
@@ -85,7 +91,33 @@ def userSignUp():
 
 @app.route('/clinicSignUp', methods =['POST'])
 def clinicSignUp():
-    render_template('clinicSignUp.html')
+    name = request.form['name']
+    license = request.form['license']
+    address = request.form['address']
+    doctors = request.form['doctors'].split(',')
+    prim_doc = request.form['primDoc']
+    username = request.form['username']
+    password = request.form['password']
+    email = request.form['email']
+    phone = request.form['phone']
+    specialties = request.form.getlist('specialties')
+
+    clinic_data = {
+        'name': name,
+        'license': license,
+        'address': address,
+        'username': username,
+        'password': password,
+        'email': email,
+        'phone': phone,
+        'doctors': doctors,
+        'prim_doc': prim_doc,
+        'specialties': specialties
+
+    }
+
+    firestoreDB.collection('clinics').add(clinic_data)
+    return render_template('login.html')
 
 
 
