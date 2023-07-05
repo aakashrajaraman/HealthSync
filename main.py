@@ -39,8 +39,7 @@ def login():
                     
                     #return redirect(url_for('protected'))
                 
-           
-            
+#create route for protected 
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
