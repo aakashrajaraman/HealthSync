@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import firebase_admin
 from firebase_admin import credentials, firestore
+import datetime
 
 
 
@@ -17,7 +18,7 @@ firestoreDB = firestore.client()
 
 @app.route('/', methods = ['GET'])
 def index():
-    return render_template('userSignUp.html')
+    return render_template('login.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -46,6 +47,12 @@ def logout():
     return redirect(url_for('login'))
 #should go to the respective dashboard
     return render_template('login.html')
+@app.route('/userRedir', methods =['POST', 'GET'])
+def userRedir():
+    return render_template('userSignUp.html')
+@app.route('/clinicRedir', methods =['POST', 'GET'])
+def clinicRedir():
+    return render_template('clinicSignUp.html')
 @app.route('/userSignUp', methods =['POST'])
 def userSignUp():
     name = request.form['name']
@@ -54,11 +61,12 @@ def userSignUp():
     password = request.form['password']
     address = request.form['address']
     phone = request.form['phone']
-    date = request.form['date']
+    date = datetime.datetime.strptime(request.form['date'], '%Y-%m-%d').date().strftime('%m%d%Y')
     aadhaar = request.form['aadhaar']
     user_bio = request.form['user_bio']
     user_job = request.form['user_job']
     checkbox_values = request.form.getlist('checkbox')
+    phone = int(phone)
     patient_data = {
         'name': name,
         'username': username,
@@ -73,8 +81,13 @@ def userSignUp():
         'checkbox_values': checkbox_values
     }
     firestoreDB.collection('patients').add(patient_data)
-    print("Patient data added")
     return render_template('login.html')
+
+@app.route('/clinicSignUp', methods =['POST'])
+def clinicSignUp():
+    render_template('clinicSignUp.html')
+
+
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)

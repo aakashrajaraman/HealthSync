@@ -87,14 +87,12 @@ button {
     font-weight: 500;
     color: #fff;
     width: 9em;
-    height: 3em;
-    line-height: 2em;
+    height: 4em;
     text-align: center;
     background: linear-gradient(90deg, #4158d0, #f441a5, #ffcc70, #4158d0);
     background-size: 300%;
     border-radius: 2rem;
     z-index: 1;
-    margin-top: 1.875rem;
     cursor: pointer;
   }
   button:hover {

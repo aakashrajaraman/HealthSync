@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Clinic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='userSignUp.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+    <style>
+        /* Add custom styles here */
+    </style>
+</head>
+
+<body>
+    <form action="{{ url_for('clinicSignUp') }}" method="post">
+
+        <h1>Register Clinic</h1>
+
+        <fieldset>
+            <!-- All fields are required -->
+            <legend><span class="number">1</span>Clinic Information</legend>
+
+            <label for="name">Clinic Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="license">License Number:</label>
+            <input type="text" id="license" name="license" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="doctors">Doctors:</label>
+            <input type="text" id="doctors" name="doctors" placeholder="Enter comma-separated names" required>
+            <label for="primDoc">Primary Doctor:</label>
+            <input type="text" id="primDoc" name="primDoc" placeholder="Enter One Name" required>
+            
+
+            
+
+        </fieldset>
+
+        <fieldset>
+            <label>Select Specializations:</label>
+            <input type="checkbox" value="General Medicine" name="specializations[]">
+            <label class="light">General Medicine</label><br>
+            <input type="checkbox" value="Dentistry" name="specializations[]">
+            <label class="light">Dentistry</label><br>
+            <input type="checkbox" value="Orthopedics" name="specializations[]">
+            <label class="light">Orthopedics</label><br>
+            <input type="checkbox" value="Pediatrics" name="specializations[]">
+            <label class="light">Pediatrics</label><br>
+            <!-- Add more specialization checkboxes as needed -->
+
+        </fieldset>
+
+        <button type="submit">Register</button>
+    </form>
+</body>
+
+</html>
