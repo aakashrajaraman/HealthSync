@@ -4,11 +4,14 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import datetime
 from dotenv import load_dotenv
+import os
+
+load_dotenv()
+path = os.getenv('FIREBASE_KEY_PATH')
 
 
 
-
-cred  = credentials.Certificate(r"D:\Backup\Desktop\programs\HealthSync\key.json")
+cred  = credentials.Certificate(path)
 firebase_admin.initialize_app(cred)
 
 
@@ -25,7 +28,7 @@ def index():
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST' and 'id' in request.form and 'password' in request.form and 'userType' in request.form:
-        print("hello")
+      
         id = request.form['id']
         password = request.form['password']
         userType = request.form['userType']
