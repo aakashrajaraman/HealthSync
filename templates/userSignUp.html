@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <form action="{{url_for('userSignUp')}}" method="post">
+  <form action="{{url_for('userSignUp')}}" method="post" enctype="multipart/form-data">
   
     <h1>Enter Your Information:</h1>
     
@@ -57,6 +57,12 @@
       <input type="checkbox"  value="Health_Insurance" name="checkbox"><label class="light" for="Health_Insurance">Health Insurance</label><br>
     
     </fieldset>
+    <!--file upload-->
+    <fieldset>
+      <legend><span class="number">3</span>Medical Documents</legend>
+      <label for="file">Upload your medical documents:</label>
+      <input type="file" id="file" name="file"required>
+      </fieldset>
     <button type="submit">Sign Up</button>
   </form>
   
