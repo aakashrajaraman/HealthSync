@@ -5,14 +5,17 @@ from firebase_admin import credentials, firestore
 import datetime
 from dotenv import load_dotenv
 import os
+from google.cloud import storage
 
 load_dotenv()
 path = os.getenv('FIREBASE_KEY_PATH')
+bucket_path = "healthsync-c9b49.appspot.com"
 
 
 
 cred  = credentials.Certificate(path)
 firebase_admin.initialize_app(cred)
+client = storage.Client.from_service_account_json(path)
 
 
 
@@ -94,6 +97,14 @@ def userSignUp():
         'checkbox_values': checkbox_values
     }
     firestoreDB.collection('patients').add(patient_data)
+
+    foldername= username
+    bucket = client.get_bucket(bucket_path)
+    blob = bucket.blob(foldername+'/')
+    blob.upload_from_string('')
+
+
+
     return render_template('login.html')
 
 @app.route('/clinicSignUp', methods =['POST'])
