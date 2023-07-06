@@ -144,7 +144,12 @@ def upload():
     pdf = request.files['pdf_file']
     bucket = client.get_bucket(bucket_path)
     blob = bucket.blob(f'kashkash/{pdf.filename}')
-    blob.upload_from_file(pdf)
+    
+    
+    blob.content_disposition = 'inline'
+
+    blob.upload_from_file(pdf)  
+
     return render_template('login.html')
 
 
