@@ -42,16 +42,21 @@ def login():
             collection = "clinics"
         user_ref = firestoreDB.collection(collection)
         query = user_ref.where('username', '==', id).limit(1).stream()
-        for doc in query:
-                user_data = doc.to_dict()
-                if user_data['password'] == password:
-                    session['user_id'] = doc.id
-                    print(session['user_id'])
+        if query:
+            for doc in query:
+                    user_data = doc.to_dict()
+                    if user_data['password'] == password:
+                        session['user_id'] = doc.id
+                        print(session['user_id'])
 
-                    if userType == 'patient':
-                        return render_template('patient_dashboard.html')
-                    elif userType == 'clinic':
-                        return render_template('clinic_dashboard.html')
+                        if userType == 'patient':
+                            return render_template('patient_dashboard.html')
+                        elif userType == 'clinic':
+                            return render_template('clinic_dashboard.html')
+                    else:#wrong password
+                        return render_template('login.html')
+        else:#wrong username
+            return render_template('login.html')
                 
 #create route for protected 
 @app.route('/logout')
