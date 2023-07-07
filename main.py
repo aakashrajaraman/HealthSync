@@ -10,6 +10,7 @@ from google.cloud import storage
 load_dotenv()
 path = os.getenv('FIREBASE_KEY_PATH')
 bucket_path = "healthsync-c9b49.appspot.com"
+current_date = datetime.date.today()
 
 
 
@@ -50,7 +51,18 @@ def login():
                         print(session['user_id'])
 
                         if userType == 'patient':
-                            return render_template('patient_dashboard.html')
+                            #get info of patient to render on page
+                            name = user_data['name']
+                            age = current_date-datetime.datetime.strptime(user_data['date'], '%m%d%Y').date()
+                            years = age.days//365
+                            print(years)
+
+
+
+
+
+
+                            return render_template('patient_dashboard.html', name = name, age = age)
                         elif userType == 'clinic':
                             return render_template('clinic_dashboard.html')
                     else:#wrong password

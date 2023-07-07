@@ -100,15 +100,17 @@
         </div>
         <div class="infos">
           <div class="name">
-            <h1>Aakash Rajaraman</h1>
+            {%if name%}
+            <h1>{{name}}</h1>
+            {%endif%}
             <h2>Patient</h2>
           </div>
           <p class="text">
-            I am a 20 year old male. This app is my way to keep a track of my medical records. Love this app..
+            Medical History: 
           </p>
           <div class="stats">
             <p>Age: &nbsp; &nbsp;</p>
-            <p>20</p>
+            <p>{{age}}</p>
           </div> 
           
           <ul class="stats">
