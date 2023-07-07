@@ -57,7 +57,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
-    return redirect(url_for('login'))
+    return render_template('login.html')
 #should go to the respective dashboard
     return render_template('login.html')
 @app.route('/userRedir', methods =['POST', 'GET'])
