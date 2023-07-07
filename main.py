@@ -26,7 +26,7 @@ firestoreDB = firestore.client()
 
 @app.route('/', methods = ['GET'])
 def index():
-    return render_template('testing.html')
+    return render_template('login.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -47,8 +47,11 @@ def login():
                 if user_data['password'] == password:
                     session['user_id'] = doc.id
                     print(session['user_id'])
-                    return render_template('login.html')
-        return render_template('login.html')
+
+                    if userType == 'patient':
+                        return render_template('patient_dashboard.html')
+                    elif userType == 'clinic':
+                        return render_template('clinic_dashboard.html')
                 
 #create route for protected 
 @app.route('/logout')
