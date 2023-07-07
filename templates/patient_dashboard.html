@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Dashboard UI</title>
-	<link rel="stylesheet" type="text/css" href="patient_dashboard.css">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='patient_dashboard.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -40,7 +40,7 @@
 		</div>
 
 
-			<a href="#" class="user1"><img src="profile.png" class="user">
+			<a href="#" class="user1"><img src="{{url_for('static',filename='profile.png')}}" class="user">
 				<div class="profile-div">
 					<p><i class="fa fa-user"></i> &nbsp;&nbsp;Profile</p>
 					<p><i class="fa fa-cog"></i> &nbsp;&nbsp;Settings</p>
@@ -84,19 +84,19 @@
 
     
 		<div class="com-inner">
-		<img src="percent_tag.png" width="105%" > 
+		<img src="{{url_for('static',filename='/percent_tag.png')}}" width="105%" > 
 	 </div>
 	</div>
 	<div class="com-box">
     
 		  
-      <img src="Ad.png" width="190%" >
+      <img src="{{url_for('static',filename='/Ad.png')}}" width="190%" >
       
 	</div>
 	<div class="table-box">
         <div class="card">
         <div class="image">
-          <img src="profile.png">
+          <img src="{{url_for('static',filename='/profile.png')}}">
         </div>
         <div class="infos">
           <div class="name">
