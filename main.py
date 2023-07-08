@@ -62,7 +62,7 @@ def login():
 
 
 
-                            return render_template('patient_dashboard.html', name = name, age = age)
+                            return render_template('patient_dashboard.html', name = name, age = years)
                         elif userType == 'clinic':
                             return render_template('clinic_dashboard.html')
                     else:#wrong password
