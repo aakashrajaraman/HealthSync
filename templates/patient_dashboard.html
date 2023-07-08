@@ -18,10 +18,8 @@
 		</li>
 		<li><i class="fa fa-file"></i><a href="#"> Profile</a></li>
     <li><i class="fa fa-file"></i><a href="#"> View Documents</a></li>
-		<li><i class="fa fa-calendar"></i><a href="#"> Scan Documents</a></li>
+		<li><i class="fa fa-calendar"></i><a href="#"> Upload Documents</a></li>
 		<li><i class="fa fa-clone"></i><a href="#"> Recommendations</a></li>
-		<li><i class="fa fa-user"></i><a href="#"> Clinics Visited</a></li>
-		<li><i class="fa fa-shield"></i><a href="#"> Customer Care</a></li>
 		<li><i class="fa fa-file-text"></i><a href="{{url_for('logout')}}"> Log out</a></li>
 
 		
@@ -33,13 +31,6 @@
 		<input type="text" name="" class="input" placeholder="Search">
 		<div class="top-right">
 			
-			<i class="fa fa-bell-o topicon bell"></i>
-			<div class="notification-div">
-			<p>Success!Your registration is now complete!</p>
-			<p>Here's some information you may find useful!</p>			
-		</div>
-
-
 			<a href="#" class="user1"><img src="{{url_for('static',filename='profile.png')}}" class="user">
 				<div class="profile-div">
 					<p><i class="fa fa-user"></i> &nbsp;&nbsp;Profile</p>
@@ -123,10 +114,7 @@
             <p>Active</p>
           </ul>
            
-          <div class="links">
-            <button class="follow">Documents</button>
-            <button class="view">History</button>
-          </div>
+          
         </div>
       </div>  
 	</div>
