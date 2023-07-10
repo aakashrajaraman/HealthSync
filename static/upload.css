@@ -121,6 +121,7 @@ body {
   }
 
   .input {
+    
     padding: 0.563rem;
     outline: none;
     background: transparent;
@@ -142,19 +143,74 @@ body {
   .user {
     width: 2.188rem;
     margin-bottom: -0.313rem;
-  }
-  .com-box {
-    height: 100%;
-    width: 15%;
-    margin-right: 1.875rem;
-    margin-top: 0.813rem;
-    float: left;
-    margin-left: 2.5rem;
-    border-radius: 0.625rem;
+  }.com-box form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
+  .com-box form label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    clear: both;
+    float:left;
+    margin-right:15px;
 
+  }
+  .com-box h1{
+    color: var(--font-color);
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .com-box .file{
+    color: var(--font-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+    .com-box p{
+    color: var(--font-light);
+    font-size: 1.5rem;
+    font-weight: bold;
 
+    }
+  .com-box input[type="file"]{
+
+    float: left;
+  }
+ 
+  
+  .com-box form input[type="text"],
+  .com-box form textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .com-box form button {
+    width: 100%;
+    padding: 15px;
+    background-color: #2bc2cd;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .com-box form button:hover {
+    background-color: #1e9ba3;
+  }  
 
 
 body {

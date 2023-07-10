@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Dashboard UI</title>
-	<link rel="stylesheet" type="text/css" href="../static/upload.css">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/upload.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -31,7 +31,7 @@
 		<input type="text" name="" class="input" placeholder="Search">
 		<div class="top-right">
 			
-			<a href="#" class="user1"><img src="../static/profile.png" class="user">
+			<a href="#" class="user1"><img src="{{url_for('static',filename='/profile.png')}}" class="user">
 				
 			</a>
 		</div>
@@ -41,10 +41,26 @@
 
 	
 
-
 	<div class="com-box">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     
-		  
+        <form id= "uploadForm" action="upload" method = "POST" enctype="multipart/form-data">
+			<h1>Upload Medical Documents</h1>
+			<p>Please upload your medical documents using the form below:</p>
+            <br>
+			<label for="file" class="file">Select File:</label>
+			<input type="file" id="file" name="file" accept=".pdf,.doc,.docx">
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="name" placeholder="Enter name">
+			<label for="metadata">Metadata:</label>
+			<textarea id="metadata" name="metadata" placeholder="Any additional info?"></textarea>
+			<button type="submit">Upload</button>
+		</form>
       
 	</div>
 	
@@ -54,7 +70,14 @@
 	</div>
 
 </div>
+<script>
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
 
+        // Display the alert using JavaScript
+        alert("Form submitted successfully!");
+    });
+</script>
 
 
 </body>

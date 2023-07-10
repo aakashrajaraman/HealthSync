@@ -75,11 +75,14 @@ def login():
 def logout():
     session.pop('user_id', None)
     return render_template('login.html')
-#should go to the respective dashboard
-    return render_template('login.html')
+
+
+
+
 @app.route('/userRedir', methods =['POST', 'GET'])
 def userRedir():
     return render_template('userSignUp.html')
+
 @app.route('/clinicRedir', methods =['POST', 'GET'])
 def clinicRedir():
     specialties = ['Dermatology', 'Allergology', 'Gastroenterology', 
@@ -89,6 +92,11 @@ def clinicRedir():
                    'Rheumatology', 'Otolaryngology', 'Urology']
     
     return render_template('clinicSignUp.html', specialties = specialties)
+
+@app.route('/uploadRedir', methods =['POST', 'GET'])
+def uploadRedir():
+    return render_template('upload.html')
+
 @app.route('/userSignUp', methods =['POST'])
 def userSignUp():
     name = request.form['name']
@@ -170,7 +178,7 @@ def upload():
 
     blob.upload_from_file(pdf)  
 
-    return render_template('login.html')
+    return render_template('patient_dashboard.html')
 
 
 
