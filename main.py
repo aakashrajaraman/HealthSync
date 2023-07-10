@@ -47,7 +47,10 @@ def login():
             for doc in query:
                     user_data = doc.to_dict()
                     if user_data['password'] == password:
+                        session['name'] = user_data['name']
+                        session['date'] = user_data['date']
                         session['user_id'] = doc.id
+                        session['username'] = user_data['username']
                         print(session['user_id'])
 
                         if userType == 'patient':
@@ -83,6 +86,13 @@ def logout():
 def userRedir():
     return render_template('userSignUp.html')
 
+@app.route('/patientRedir', methods =['POST', 'GET'])
+def patientRedir():
+    name = session['name']
+    age = current_date-datetime.datetime.strptime(session['date'], '%m%d%Y').date()
+    years = age.days//365
+    return render_template('patient_dashboard.html', name = name, age = years)
+
 @app.route('/clinicRedir', methods =['POST', 'GET'])
 def clinicRedir():
     specialties = ['Dermatology', 'Allergology', 'Gastroenterology', 
@@ -99,6 +109,7 @@ def uploadRedir():
 
 @app.route('/userSignUp', methods =['POST'])
 def userSignUp():
+    print('usershere')
     name = request.form['name']
     username = request.form['username']
     user_email = request.form['user_email']
@@ -109,6 +120,7 @@ def userSignUp():
     aadhaar = request.form['aadhaar']
     user_bio = request.form['user_bio']
     user_job = request.form['user_job']
+    gender = request.form['gender']
     checkbox_values = request.form.getlist('checkbox')
     
     phone = int(phone)
@@ -123,7 +135,8 @@ def userSignUp():
         'aadhaar': aadhaar,
         'user_bio': user_bio,
         'user_job': user_job,
-        'checkbox_values': checkbox_values
+        'checkbox_values': checkbox_values,
+        'gender': gender
     }
     firestoreDB.collection('patients').add(patient_data)
 
@@ -166,12 +179,14 @@ def clinicSignUp():
     return render_template('login.html')
 
 
-
 @app.route('/upload', methods = ['POST'])
 def upload():
-    pdf = request.files['pdf_file']
+    pdf = request.files['file']
+    name = request.form['name']
     bucket = client.get_bucket(bucket_path)
-    blob = bucket.blob(f'kashkash/{pdf.filename}')
+    path = session['username']+'/'+name+'.pdf'
+    print(path)
+    blob = bucket.blob(path)
     
     
     blob.content_disposition = 'inline'

@@ -12,7 +12,7 @@
 	<h1 class="logo" align ="center">H<span>ealth</span>S<span>ync</span></h1>
 	<i class="fa fa-chevron-left menu-icon"></i>
 	<ul class="sidenav">
-		<li class="active"><i class="fa fa-home"></i><a href="#"> Dashboard
+		<li class="active"><i class="fa fa-home"></i><a href="{{url_for('patientRedir')}}"> Dashboard
 			<span class="span1"><i class="fa fa-angle-right"></i></span>			
 		</a>	
 		</li>
@@ -49,7 +49,7 @@
         <br>
         <br>
     
-        <form id= "uploadForm" action="upload" method = "POST" enctype="multipart/form-data">
+        <form id= "uploadForm" action="{{ url_for('upload') }}" method = "post" enctype="multipart/form-data">
 			<h1>Upload Medical Documents</h1>
 			<p>Please upload your medical documents using the form below:</p>
             <br>
@@ -70,14 +70,7 @@
 	</div>
 
 </div>
-<script>
-    document.getElementById('uploadForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
 
-        // Display the alert using JavaScript
-        alert("Form submitted successfully!");
-    });
-</script>
 
 
 </body>
