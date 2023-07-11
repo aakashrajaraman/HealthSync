@@ -49,18 +49,9 @@
         <br>
         <br>
     
-        <form id= "uploadForm" action="{{ url_for('showDocs') }}" method = "post" enctype="multipart/form-data">
-			<h1>Your Current Documents</h1>
-			<p>Please upload your medical documents using the form below:</p>
-            <br>
-			<label for="file" class="file">Select File:</label>
-			<input type="file" id="file" name="file" accept=".pdf,.doc,.docx">
-			<label for="name">Name:</label>
-			<input type="text" id="name" name="name" placeholder="Enter name">
-			<label for="metadata">Metadata:</label>
-			<textarea id="metadata" name="metadata" placeholder="Any additional info?"></textarea>
-			<button type="submit">Upload</button>
-		</form>
+        {% for blob in blobs %}
+<li><a href=" {{ blob.name }}"> {{ blob.name }}</a></li>
+{% endfor %}
       
 	</div>
 	

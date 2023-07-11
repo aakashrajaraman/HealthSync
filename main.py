@@ -107,6 +107,7 @@ def clinicRedir():
 def uploadRedir():
     return render_template('upload.html')
 
+
 @app.route('/userSignUp', methods =['POST'])
 def userSignUp():
     print('usershere')
@@ -182,6 +183,7 @@ def clinicSignUp():
 @app.route('/upload', methods = ['POST'])
 def upload():
     pdf = request.files['file']
+    metadata = request.form['metadata']
     name = request.form['name']
     bucket = client.get_bucket(bucket_path)
     path = session['username']+'/'+name+'.pdf'
@@ -190,6 +192,7 @@ def upload():
     
     
     blob.content_disposition = 'inline'
+    blob.metadata = {'metadata': metadata}
 
     blob.upload_from_file(pdf)  
 
@@ -198,11 +201,12 @@ def upload():
 
 
 
-@app.route('showDocs', methods = ['POST'])
+@app.route('/showDocs', methods = ['POST'])
 def showDocs():
     user_id = session['user_id']
     bucket = client.get_bucket(bucket_path)
     blobs = bucket.list_blobs(prefix=user_id+'/') 
+    return render_template('patient_dashboard.html',blobs = blobs)
 
 
 
