@@ -197,5 +197,14 @@ def upload():
 
 
 
+
+@app.route('showDocs', methods = ['POST'])
+def showDocs():
+    user_id = session['user_id']
+    bucket = client.get_bucket(bucket_path)
+    blobs = bucket.list_blobs(prefix=user_id+'/') 
+
+
+
 if __name__ == '__main__':
     app.run(port=3000, debug=True)

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard UI</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/upload.css')}}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="sidebar">
+  
+	<h1 class="logo" align ="center">H<span>ealth</span>S<span>ync</span></h1>
+	<i class="fa fa-chevron-left menu-icon"></i>
+	<ul class="sidenav">
+		<li class="active"><i class="fa fa-home"></i><a href="{{url_for('patientRedir')}}"> Dashboard
+			<span class="span1"><i class="fa fa-angle-right"></i></span>			
+		</a>	
+		</li>
+		<li><i class="fa fa-file"></i><a href="#"> Profile</a></li>
+    <li><i class="fa fa-file"></i><a href="#"> View Documents</a></li>
+		<li><i class="fa fa-calendar"></i><a href="#"> Upload Documents</a></li>
+		<li><i class="fa fa-clone"></i><a href="#"> Recommendations</a></li>
+		<li><i class="fa fa-file-text"></i><a href="{{url_for('logout')}}"> Log out</a></li>
+
+		
+	</ul>
+</div>
+
+<div class="main">
+	<div class="main-top">
+		<input type="text" name="" class="input" placeholder="Search">
+		<div class="top-right">
+			
+			<a href="#" class="user1"><img src="{{url_for('static',filename='/profile.png')}}" class="user">
+				
+			</a>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+
+	
+
+	<div class="com-box">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    
+        <form id= "uploadForm" action="{{ url_for('showDocs') }}" method = "post" enctype="multipart/form-data">
+			<h1>Your Current Documents</h1>
+			<p>Please upload your medical documents using the form below:</p>
+            <br>
+			<label for="file" class="file">Select File:</label>
+			<input type="file" id="file" name="file" accept=".pdf,.doc,.docx">
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="name" placeholder="Enter name">
+			<label for="metadata">Metadata:</label>
+			<textarea id="metadata" name="metadata" placeholder="Any additional info?"></textarea>
+			<button type="submit">Upload</button>
+		</form>
+      
+	</div>
+	
+
+
+	
+	</div>
+
+</div>
+
+
+
+</body>
+</html>
