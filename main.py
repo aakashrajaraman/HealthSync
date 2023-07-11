@@ -6,6 +6,7 @@ import datetime
 from dotenv import load_dotenv
 import os
 from google.cloud import storage
+from itertools import chain
 
 load_dotenv()
 path = os.getenv('FIREBASE_KEY_PATH')
@@ -201,12 +202,22 @@ def upload():
 
 
 
-@app.route('/showDocs', methods = ['POST'])
+@app.route('/showDocs', methods = ['POST', 'GET'])
 def showDocs():
     user_id = session['user_id']
     bucket = client.get_bucket(bucket_path)
-    blobs = bucket.list_blobs(prefix=user_id+'/') 
-    return render_template('patient_dashboard.html',blobs = blobs)
+    blobs = bucket.list_blobs(prefix='aakashrajaraman/') 
+    prefixes = set()
+    toBeRendered =[]
+
+    for blob in chain(*blobs.pages):
+        prefixes.add(blob.name.split('/')[0])
+        if blob.name.endswith('.pdf'):
+            pdf_name = blob.name
+            pdf_link = f"https://storage.googleapis.com/{bucket_path}/{blob.name}"
+            tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link}
+            toBeRendered.append(tbu)
+    return render_template('yourDocs.html',blobs = blobs)
 
 
 
