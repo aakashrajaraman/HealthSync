@@ -215,9 +215,11 @@ def showDocs():
         if blob.name.endswith('.pdf'):
             pdf_name = blob.name
             pdf_link = f"https://storage.googleapis.com/{bucket_path}/{blob.name}"
-            tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link}
+            metadata = blob.metadata
+            tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link, 'metadata': metadata}
             toBeRendered.append(tbu)
-    return render_template('yourDocs.html',blobs = blobs)
+        
+    return render_template('yourDocs.html',toBeRendered = toBeRendered)
 
 
 
