@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Dashboard UI</title>
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/upload.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/yourDocs.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -37,25 +37,25 @@
 		</div>
 		<div class="clearfix"></div>
 	</div>
-
-
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	
 
+	
+	<h1>Your Current Documents on Record</h1>
+	<br>
 	<div class="com-box">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    
+      
+
 {%for doc in toBeRendered%}
-<p>{{doc}}</p>
-<a href = "{{doc['pdf_link']}}">{{doc['pdf_name']}}</a>
+<a href = "{{doc['pdf_link']}}">{{doc['pdf_name']}} &nbsp; &nbsp; &nbsp;&nbsp; Notes: {{doc['metadata']}}</a>
 
 {%endfor%}
 
-		<div class="clearfix"></div>
       
 	</div>
 	

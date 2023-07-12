@@ -229,6 +229,37 @@ image {
 ul {
 	list-style: none;
   }
+
+  .com-box {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 0.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .com-box a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .com-box a:hover {
+    text-decoration: underline;
+  }
+  
+  .com-box p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .com-box .pdf-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .com-box .pdf-link {
+    font-size: 1rem;
+  }
+
+
   
   /* Utilities */
   .card::after,
