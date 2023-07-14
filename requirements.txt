@@ -2,3 +2,12 @@ flask==1.1.4
 firebase-admin==5.0.1
 python-dotenv==0.17.1
 google-cloud-storage==1.41.0
+python-doctr==0.6.0
+tf2onnx==1.14.0
+rapidfuzz==2.15.1
+weasyprint==59.0
+protobuf==3.20.0
+
+# Please install the GTK runtime by following these steps:
+# 1. Download the `gtk-for-windows-runtime-installer` executable file from [https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases].
+# Make sure it installs in default path to avoid any issues
