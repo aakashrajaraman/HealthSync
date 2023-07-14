@@ -8,6 +8,12 @@ import os
 from google.cloud import storage
 from itertools import chain
 
+os.environ['USE_TORCH'] = '1'
+
+from doctr.io import DocumentFile
+from doctr.models import ocr_predictor
+import io 
+
 load_dotenv()
 path = os.getenv('FIREBASE_KEY_PATH')
 bucket_path = "healthsync-c9b49.appspot.com"
@@ -19,8 +25,7 @@ cred  = credentials.Certificate(path)
 firebase_admin.initialize_app(cred)
 client = storage.Client.from_service_account_json(path)
 
-
-
+predictor = torch.load("D:\\Jacob's Documents D Drive\\Health Hackathon\\HelathSync-20230713T064444Z-001\\HelathSync\\text_extraction_model.pth")
 
 app = Flask(__name__)
 app.secret_key = "HealthSync"
@@ -221,7 +226,13 @@ def showDocs():
         
     return render_template('yourDocs.html',toBeRendered = toBeRendered)
 
-
+@app.route('/ocr', methods=['POST'])
+def ocr():
+    file = request.files['file']
+    doc = DocumentFile.from_pdf(io.BytesIO(file.read()))
+    result = predictor(doc)
+    synthetic_pages = result.synthesize() #synthesized image output
+    extracted_text = result.export() #json format outpu
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
