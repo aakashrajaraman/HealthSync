@@ -202,6 +202,12 @@ def upload():
 
     blob.upload_from_file(pdf)  
 
+    doc = DocumentFile.from_pdf(io.BytesIO(pdf.read()))
+    result = predictor(doc)
+    synthetic_pages = result.synthesize() #synthesized image output
+    extracted_text = result.export() #json format outpu
+
+
     return render_template('patient_dashboard.html')
 
 
@@ -225,14 +231,6 @@ def showDocs():
             toBeRendered.append(tbu)
         
     return render_template('yourDocs.html',toBeRendered = toBeRendered)
-
-@app.route('/ocr', methods=['POST'])
-def ocr():
-    file = request.files['file']
-    doc = DocumentFile.from_pdf(io.BytesIO(file.read()))
-    result = predictor(doc)
-    synthetic_pages = result.synthesize() #synthesized image output
-    extracted_text = result.export() #json format outpu
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
