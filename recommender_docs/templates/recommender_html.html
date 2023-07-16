@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='recommentder_css.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <main class="login">
+        <div class="logina__col">
+            <header class="login__brand"><span style="color: rgb(71, 156, 234);">H</span>ealth<span style="color: rgb(71, 156, 234);">S</span>ync</header>
+
+            <br><br>
+            <form class="login__form" method="post" action="">
+                <div class="login__form-wrapper">
+                    <h1 style="color: rgb(15, 73, 167); font-weight: bold;">SMART CLINIC RECOMMENDER</h1>
+                    <p style="color: rgb(0, 0, 0); font-weight: bold;">Enter your symptoms</p>
+                    <div class="login__field-group">
+                      <form method="POST" action="/" id="symptom-form">
+                        <label class="login__label" for="symptom1" >Symptom 1</label>
+                        <div class="dropdown-wrapper">
+                          
+                            <select class="login__field dropdown" type="text" name="symptom1" id="symptom1" required>
+                                <option value="" disabled selected>Select Symptoms</option>
+                                    <option value="option1">Itching</option>
+                                    <option value="option2">Skin Rash</option>
+                                    <option value="option3">Nodal Skin Eruptions</option>
+                                    <option value="option4">Continuous Sneezing</option>
+                                    <option value="option5">Shivering</option>
+                                    <option value="option6">Chills</option>
+                                    <option value="option7">Joint Pain</option>
+                                    <option value="option8">Stomach Pain</option>
+                                    <option value="option9">Acidity</option>
+                                    <option value="option10">Ulcers On Tongue</option>
+                                    <option value="option11">Muscle Wasting</option>
+                                    <option value="option12">Vomiting</option>
+                                    <option value="option13">Burning Micturition</option>
+                                    <option value="option14">Spotting Urination</option>
+                                    <option value="option15">Fatigue</option>
+                                    <option value="option16">Weight Gain</option>
+                                    <option value="option17">Anxiety</option>
+                                    <option value="option18">Cold Hands And Feet</option>
+                                    <option value="option19">Mood Swings</option>
+                                    <option value="option20">Weight Loss</option>
+                                    <option value="option21">Restlessness</option>
+                                    <option value="option22">Lethargy</option>
+                                    <option value="option23">Patches In Throat</option>
+                                    <option value="option24">Irregular Sugar Level</option>
+                                    <option value="option25">Cough</option>
+                                    <option value="option26">High Fever</option>
+                                    <option value="option27">Sunken Eyes</option>
+                                    <option value="option28">Breathlessness</option>
+                                    <option value="option29">Sweating</option>
+                                    <option value="option30">Dehydration</option>
+                                    <option value="option31">Indigestion</option>
+                                    <option value="option32">Headache</option>
+                                    <option value="option33">Yellowish Skin</option>
+                                    <option value="option34">Dark Urine</option>
+                                    <option value="option35">Nausea</option>
+                                    <option value="option36">Loss Of Appetite</option>
+                                    <option value="option37">Pain Behind The Eyes</option>
+                                    <option value="option38">Back Pain</option>
+                                    <option value="option39">Constipation</option>
+                                    <option value="option40">Abdominal Pain</option>
+                                    <option value="option41">Diarrhoea</option>
+                                    <option value="option42">Mild Fever</option>
+                                    <option value="option43">Yellow Urine</option>
+                                    <option value="option44">Yellowing Of Eyes</option>
+                                    <option value="option45">Acute Liver Failure</option>
+                                    <option value="option46">Fluid Overload</option>
+                                    <option value="option47">Swelling Of Stomach</option>
+                                    <option value="option48">Swelled Lymph Nodes</option>
+                                    <option value="option49">Malaise</option>
+                                    <option value="option50">Blurred And Distorted Vision</option>
+                                    <option value="option51">Phlegm</option>
+                                    <option value="option52">Throat Irritation</option>
+                                    <option value="option53">Redness Of Eyes</option>
+                                    <option value="option54">Sinus Pressure</option>
+                                    <option value="option55">Runny Nose</option>
+                                    <option value="option56">Congestion</option>
+                                    <option value="option57">Chest Pain</option>
+                                    <option value="option58">Weakness In Limbs</option>
+                                    <option value="option59">Fast Heart Rate</option>
+                                    <option value="option60">Pain During Bowel Movements</option>
+                                    <option value="option61">Pain In Anal Region</option>
+                                    <option value="option62">Bloody Stool</option>
+                                    <option value="option63">Irritation In Anus</option>
+                                    <option value="option64">Neck Pain</option>
+                                    <option value="option65">Dizziness</option>
+                                    <option value="option66">Cramps</option>
+                                    <option value="option67">Bruising</option>
+                                    <option value="option68">Obesity</option>
+                                    <option value="option69">Swollen Legs</option>
+                                    <option value="option70">Swollen Blood Vessels</option>
+                                    <option value="option71">Puffy Face And Eyes</option>
+                                    <option value="option72">Enlarged Thyroid</option>
+                                    <option value="option73">Brittle Nails</option>
+                                    <option value="option74">Swollen Extremities</option>
+                                    <option value="option75">Excessive Hunger</option>
+                                    <option value="option76">Extra Marital Contacts</option>
+                                    <option value="option77">Drying And Tingling Lips</option>
+                                    <option value="option78">Slurred Speech</option>
+                                    <option value="option79">Knee Pain</option>
+                                    <option value="option80">Hip Joint Pain</option>
+                                    <option value="option81">Muscle Weakness</option>
+                                    <option value="option82">Stiff Neck</option>
+                                    <option value="option83">Swelling Joints</option>
+                                    <option value="option84">Movement Stiffness</option>
+                                    <option value="option85">Spinning Movements</option>
+                                    <option value="option86">Loss Of Balance</option>
+                                    <option value="option87">Unsteadiness</option>
+                                    <option value="option88">Weakness Of One Body Side</option>
+                                    <option value="option89">Loss Of Smell</option>
+                                    <option value="option90">Bladder Discomfort</option>
+                                    <option value="option91">Foul Smell Of Urine</option>
+                                    <option value="option92">Continuous Feel Of Urine</option>
+                                    <option value="option93">Passage Of Gases</option>
+                                    <option value="option94">Internal Itching</option>
+                                    <option value="option95">Toxic Look (Typhos)</option>
+                                    <option value="option96">Depression</option>
+                                    <option value="option97">Irritability</option>
+                                    <option value="option98">Muscle Pain</option>
+                                    <option value="option99">Altered Sensorium</option>
+                                    <option value="option100">Red Spots Over Body</option>
+                                    <option value="option101">Belly Pain</option>
+                                    <option value="option102">Abnormal Menstruation</option>
+                                    <option value="option103">Dischromic Patches</option>
+                                    <option value="option104">Watering From Eyes</option>
+                                    <option value="option105">Increased Appetite</option>
+                                    <option value="option106">Polyuria</option>
+                                    <option value="option107">Family History</option>
+                                    <option value="option108">Mucoid Sputum</option>
+                                    <option value="option109">Rusty Sputum</option>
+                                    <option value="option110">Lack Of Concentration</option>
+                                    <option value="option111">Visual Disturbances</option>
+                                    <option value="option112">Receiving Blood Transfusion</option>
+                                    <option value="option113">Receiving Unsterile Injections</option>
+                                    <option value="option114">Coma</option>
+                                    <option value="option115">Stomach Bleeding</option>
+                                    <option value="option116">Distention Of Abdomen</option>
+                                    <option value="option117">History Of Alcohol Consumption</option>
+                                    <option value="option118">Fluid Overload</option>
+                                    <option value="option119">Blood In Sputum</option>
+                                    <option value="option120">Prominent Veins On Calf</option>
+                                    <option value="option121">Palpitations</option>
+                                    <option value="option122">Painful Walking</option>
+                                    <option value="option123">Pus Filled Pimples</option>
+                                    <option value="option124">Blackheads</option>
+                                    <option value="option125">Scurrying</option>
+                                    <option value="option126">Skin Peeling</option>
+                                    <option value="option127">Silver Like Dusting</option>
+                                    <option value="option128">Small Dents In Nails</option>
+                                    <option value="option129">Inflammatory Nails</option>
+                                    <option value="option130">Blister</option>
+                                    <option value="option131">Red Sore Around Nose</option>
+                                    <option value="option132">Yellow Crust Ooze</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="login__field-group">
+                        <label class="login__label" for="symptom2" >Symptom 2</label>
+                        <div class="dropdown-wrapper">
+                            <select class="login__field dropdown" type="text" name="symptom2" id="symptom2" required>
+                                <option value="" disabled selected>Select Symptoms</option>
+                                    <option value="option1">Itching</option>
+                                    <option value="option2">Skin Rash</option>
+                                    <option value="option3">Nodal Skin Eruptions</option>
+                                    <option value="option4">Continuous Sneezing</option>
+                                    <option value="option5">Shivering</option>
+                                    <option value="option6">Chills</option>
+                                    <option value="option7">Joint Pain</option>
+                                    <option value="option8">Stomach Pain</option>
+                                    <option value="option9">Acidity</option>
+                                    <option value="option10">Ulcers On Tongue</option>
+                                    <option value="option11">Muscle Wasting</option>
+                                    <option value="option12">Vomiting</option>
+                                    <option value="option13">Burning Micturition</option>
+                                    <option value="option14">Spotting Urination</option>
+                                    <option value="option15">Fatigue</option>
+                                    <option value="option16">Weight Gain</option>
+                                    <option value="option17">Anxiety</option>
+                                    <option value="option18">Cold Hands And Feet</option>
+                                    <option value="option19">Mood Swings</option>
+                                    <option value="option20">Weight Loss</option>
+                                    <option value="option21">Restlessness</option>
+                                    <option value="option22">Lethargy</option>
+                                    <option value="option23">Patches In Throat</option>
+                                    <option value="option24">Irregular Sugar Level</option>
+                                    <option value="option25">Cough</option>
+                                    <option value="option26">High Fever</option>
+                                    <option value="option27">Sunken Eyes</option>
+                                    <option value="option28">Breathlessness</option>
+                                    <option value="option29">Sweating</option>
+                                    <option value="option30">Dehydration</option>
+                                    <option value="option31">Indigestion</option>
+                                    <option value="option32">Headache</option>
+                                    <option value="option33">Yellowish Skin</option>
+                                    <option value="option34">Dark Urine</option>
+                                    <option value="option35">Nausea</option>
+                                    <option value="option36">Loss Of Appetite</option>
+                                    <option value="option37">Pain Behind The Eyes</option>
+                                    <option value="option38">Back Pain</option>
+                                    <option value="option39">Constipation</option>
+                                    <option value="option40">Abdominal Pain</option>
+                                    <option value="option41">Diarrhoea</option>
+                                    <option value="option42">Mild Fever</option>
+                                    <option value="option43">Yellow Urine</option>
+                                    <option value="option44">Yellowing Of Eyes</option>
+                                    <option value="option45">Acute Liver Failure</option>
+                                    <option value="option46">Fluid Overload</option>
+                                    <option value="option47">Swelling Of Stomach</option>
+                                    <option value="option48">Swelled Lymph Nodes</option>
+                                    <option value="option49">Malaise</option>
+                                    <option value="option50">Blurred And Distorted Vision</option>
+                                    <option value="option51">Phlegm</option>
+                                    <option value="option52">Throat Irritation</option>
+                                    <option value="option53">Redness Of Eyes</option>
+                                    <option value="option54">Sinus Pressure</option>
+                                    <option value="option55">Runny Nose</option>
+                                    <option value="option56">Congestion</option>
+                                    <option value="option57">Chest Pain</option>
+                                    <option value="option58">Weakness In Limbs</option>
+                                    <option value="option59">Fast Heart Rate</option>
+                                    <option value="option60">Pain During Bowel Movements</option>
+                                    <option value="option61">Pain In Anal Region</option>
+                                    <option value="option62">Bloody Stool</option>
+                                    <option value="option63">Irritation In Anus</option>
+                                    <option value="option64">Neck Pain</option>
+                                    <option value="option65">Dizziness</option>
+                                    <option value="option66">Cramps</option>
+                                    <option value="option67">Bruising</option>
+                                    <option value="option68">Obesity</option>
+                                    <option value="option69">Swollen Legs</option>
+                                    <option value="option70">Swollen Blood Vessels</option>
+                                    <option value="option71">Puffy Face And Eyes</option>
+                                    <option value="option72">Enlarged Thyroid</option>
+                                    <option value="option73">Brittle Nails</option>
+                                    <option value="option74">Swollen Extremities</option>
+                                    <option value="option75">Excessive Hunger</option>
+                                    <option value="option76">Extra Marital Contacts</option>
+                                    <option value="option77">Drying And Tingling Lips</option>
+                                    <option value="option78">Slurred Speech</option>
+                                    <option value="option79">Knee Pain</option>
+                                    <option value="option80">Hip Joint Pain</option>
+                                    <option value="option81">Muscle Weakness</option>
+                                    <option value="option82">Stiff Neck</option>
+                                    <option value="option83">Swelling Joints</option>
+                                    <option value="option84">Movement Stiffness</option>
+                                    <option value="option85">Spinning Movements</option>
+                                    <option value="option86">Loss Of Balance</option>
+                                    <option value="option87">Unsteadiness</option>
+                                    <option value="option88">Weakness Of One Body Side</option>
+                                    <option value="option89">Loss Of Smell</option>
+                                    <option value="option90">Bladder Discomfort</option>
+                                    <option value="option91">Foul Smell Of Urine</option>
+                                    <option value="option92">Continuous Feel Of Urine</option>
+                                    <option value="option93">Passage Of Gases</option>
+                                    <option value="option94">Internal Itching</option>
+                                    <option value="option95">Toxic Look (Typhos)</option>
+                                    <option value="option96">Depression</option>
+                                    <option value="option97">Irritability</option>
+                                    <option value="option98">Muscle Pain</option>
+                                    <option value="option99">Altered Sensorium</option>
+                                    <option value="option100">Red Spots Over Body</option>
+                                    <option value="option101">Belly Pain</option>
+                                    <option value="option102">Abnormal Menstruation</option>
+                                    <option value="option103">Dischromic Patches</option>
+                                    <option value="option104">Watering From Eyes</option>
+                                    <option value="option105">Increased Appetite</option>
+                                    <option value="option106">Polyuria</option>
+                                    <option value="option107">Family History</option>
+                                    <option value="option108">Mucoid Sputum</option>
+                                    <option value="option109">Rusty Sputum</option>
+                                    <option value="option110">Lack Of Concentration</option>
+                                    <option value="option111">Visual Disturbances</option>
+                                    <option value="option112">Receiving Blood Transfusion</option>
+                                    <option value="option113">Receiving Unsterile Injections</option>
+                                    <option value="option114">Coma</option>
+                                    <option value="option115">Stomach Bleeding</option>
+                                    <option value="option116">Distention Of Abdomen</option>
+                                    <option value="option117">History Of Alcohol Consumption</option>
+                                    <option value="option118">Fluid Overload</option>
+                                    <option value="option119">Blood In Sputum</option>
+                                    <option value="option120">Prominent Veins On Calf</option>
+                                    <option value="option121">Palpitations</option>
+                                    <option value="option122">Painful Walking</option>
+                                    <option value="option123">Pus Filled Pimples</option>
+                                    <option value="option124">Blackheads</option>
+                                    <option value="option125">Scurrying</option>
+                                    <option value="option126">Skin Peeling</option>
+                                    <option value="option127">Silver Like Dusting</option>
+                                    <option value="option128">Small Dents In Nails</option>
+                                    <option value="option129">Inflammatory Nails</option>
+                                    <option value="option130">Blister</option>
+                                    <option value="option131">Red Sore Around Nose</option>
+                                    <option value="option132">Yellow Crust Ooze</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="login__field-group">
+                      <label class="login__label" for="symptom3" >Symptom 3</label>
+                      <div class="dropdown-wrapper">
+                          <select class="login__field dropdown" type="text" name="symptom3" id="symptom3" required>
+                              <option value="" disabled selected>Select Symptoms</option>
+                                    <option value="option1">Itching</option>
+                                    <option value="option2">Skin Rash</option>
+                                    <option value="option3">Nodal Skin Eruptions</option>
+                                    <option value="option4">Continuous Sneezing</option>
+                                    <option value="option5">Shivering</option>
+                                    <option value="option6">Chills</option>
+                                    <option value="option7">Joint Pain</option>
+                                    <option value="option8">Stomach Pain</option>
+                                    <option value="option9">Acidity</option>
+                                    <option value="option10">Ulcers On Tongue</option>
+                                    <option value="option11">Muscle Wasting</option>
+                                    <option value="option12">Vomiting</option>
+                                    <option value="option13">Burning Micturition</option>
+                                    <option value="option14">Spotting Urination</option>
+                                    <option value="option15">Fatigue</option>
+                                    <option value="option16">Weight Gain</option>
+                                    <option value="option17">Anxiety</option>
+                                    <option value="option18">Cold Hands And Feet</option>
+                                    <option value="option19">Mood Swings</option>
+                                    <option value="option20">Weight Loss</option>
+                                    <option value="option21">Restlessness</option>
+                                    <option value="option22">Lethargy</option>
+                                    <option value="option23">Patches In Throat</option>
+                                    <option value="option24">Irregular Sugar Level</option>
+                                    <option value="option25">Cough</option>
+                                    <option value="option26">High Fever</option>
+                                    <option value="option27">Sunken Eyes</option>
+                                    <option value="option28">Breathlessness</option>
+                                    <option value="option29">Sweating</option>
+                                    <option value="option30">Dehydration</option>
+                                    <option value="option31">Indigestion</option>
+                                    <option value="option32">Headache</option>
+                                    <option value="option33">Yellowish Skin</option>
+                                    <option value="option34">Dark Urine</option>
+                                    <option value="option35">Nausea</option>
+                                    <option value="option36">Loss Of Appetite</option>
+                                    <option value="option37">Pain Behind The Eyes</option>
+                                    <option value="option38">Back Pain</option>
+                                    <option value="option39">Constipation</option>
+                                    <option value="option40">Abdominal Pain</option>
+                                    <option value="option41">Diarrhoea</option>
+                                    <option value="option42">Mild Fever</option>
+                                    <option value="option43">Yellow Urine</option>
+                                    <option value="option44">Yellowing Of Eyes</option>
+                                    <option value="option45">Acute Liver Failure</option>
+                                    <option value="option46">Fluid Overload</option>
+                                    <option value="option47">Swelling Of Stomach</option>
+                                    <option value="option48">Swelled Lymph Nodes</option>
+                                    <option value="option49">Malaise</option>
+                                    <option value="option50">Blurred And Distorted Vision</option>
+                                    <option value="option51">Phlegm</option>
+                                    <option value="option52">Throat Irritation</option>
+                                    <option value="option53">Redness Of Eyes</option>
+                                    <option value="option54">Sinus Pressure</option>
+                                    <option value="option55">Runny Nose</option>
+                                    <option value="option56">Congestion</option>
+                                    <option value="option57">Chest Pain</option>
+                                    <option value="option58">Weakness In Limbs</option>
+                                    <option value="option59">Fast Heart Rate</option>
+                                    <option value="option60">Pain During Bowel Movements</option>
+                                    <option value="option61">Pain In Anal Region</option>
+                                    <option value="option62">Bloody Stool</option>
+                                    <option value="option63">Irritation In Anus</option>
+                                    <option value="option64">Neck Pain</option>
+                                    <option value="option65">Dizziness</option>
+                                    <option value="option66">Cramps</option>
+                                    <option value="option67">Bruising</option>
+                                    <option value="option68">Obesity</option>
+                                    <option value="option69">Swollen Legs</option>
+                                    <option value="option70">Swollen Blood Vessels</option>
+                                    <option value="option71">Puffy Face And Eyes</option>
+                                    <option value="option72">Enlarged Thyroid</option>
+                                    <option value="option73">Brittle Nails</option>
+                                    <option value="option74">Swollen Extremities</option>
+                                    <option value="option75">Excessive Hunger</option>
+                                    <option value="option76">Extra Marital Contacts</option>
+                                    <option value="option77">Drying And Tingling Lips</option>
+                                    <option value="option78">Slurred Speech</option>
+                                    <option value="option79">Knee Pain</option>
+                                    <option value="option80">Hip Joint Pain</option>
+                                    <option value="option81">Muscle Weakness</option>
+                                    <option value="option82">Stiff Neck</option>
+                                    <option value="option83">Swelling Joints</option>
+                                    <option value="option84">Movement Stiffness</option>
+                                    <option value="option85">Spinning Movements</option>
+                                    <option value="option86">Loss Of Balance</option>
+                                    <option value="option87">Unsteadiness</option>
+                                    <option value="option88">Weakness Of One Body Side</option>
+                                    <option value="option89">Loss Of Smell</option>
+                                    <option value="option90">Bladder Discomfort</option>
+                                    <option value="option91">Foul Smell Of Urine</option>
+                                    <option value="option92">Continuous Feel Of Urine</option>
+                                    <option value="option93">Passage Of Gases</option>
+                                    <option value="option94">Internal Itching</option>
+                                    <option value="option95">Toxic Look (Typhos)</option>
+                                    <option value="option96">Depression</option>
+                                    <option value="option97">Irritability</option>
+                                    <option value="option98">Muscle Pain</option>
+                                    <option value="option99">Altered Sensorium</option>
+                                    <option value="option100">Red Spots Over Body</option>
+                                    <option value="option101">Belly Pain</option>
+                                    <option value="option102">Abnormal Menstruation</option>
+                                    <option value="option103">Dischromic Patches</option>
+                                    <option value="option104">Watering From Eyes</option>
+                                    <option value="option105">Increased Appetite</option>
+                                    <option value="option106">Polyuria</option>
+                                    <option value="option107">Family History</option>
+                                    <option value="option108">Mucoid Sputum</option>
+                                    <option value="option109">Rusty Sputum</option>
+                                    <option value="option110">Lack Of Concentration</option>
+                                    <option value="option111">Visual Disturbances</option>
+                                    <option value="option112">Receiving Blood Transfusion</option>
+                                    <option value="option113">Receiving Unsterile Injections</option>
+                                    <option value="option114">Coma</option>
+                                    <option value="option115">Stomach Bleeding</option>
+                                    <option value="option116">Distention Of Abdomen</option>
+                                    <option value="option117">History Of Alcohol Consumption</option>
+                                    <option value="option118">Fluid Overload</option>
+                                    <option value="option119">Blood In Sputum</option>
+                                    <option value="option120">Prominent Veins On Calf</option>
+                                    <option value="option121">Palpitations</option>
+                                    <option value="option122">Painful Walking</option>
+                                    <option value="option123">Pus Filled Pimples</option>
+                                    <option value="option124">Blackheads</option>
+                                    <option value="option125">Scurrying</option>
+                                    <option value="option126">Skin Peeling</option>
+                                    <option value="option127">Silver Like Dusting</option>
+                                    <option value="option128">Small Dents In Nails</option>
+                                    <option value="option129">Inflammatory Nails</option>
+                                    <option value="option130">Blister</option>
+                                    <option value="option131">Red Sore Around Nose</option>
+                                    <option value="option132">Yellow Crust Ooze</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                  
+                    <button class="login__btn" type="submit" value="Check">
+                        <span class="login__btn-label">Get Clinics</span>
+                        
+                    </button>
+                    
+                </div>
+            </form>
+            
+        </div>
+        <div class="login__col">
+
+            <div class="messages-section">
+		<button class="messages-close">
+		  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
+			<circle cx="12" cy="12" r="10" />
+			<line x1="15" y1="9" x2="9" y2="15" />
+			<line x1="9" y1="9" x2="15" y2="15" /></svg>
+		</button>
+		<div class="projects-section-header">
+            <p style="color: rgb(4, 35, 93); font-weight: bold;font-size:40px;">CLINICS YOU COULD  VISIT</p>
+		</div>
+		<div class="messages">
+		  <div class="message-box">
+			<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="profile image">
+			<div class="message-content">
+			  <div class="message-header">
+				<div class="name">Dr Phineas</div>
+				<div class="star-checkbox">
+				  <input type="checkbox" id="star-1">
+				  <label for="star-1">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+						
+					  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+				  </label>
+				</div>
+			  </div>
+			  <p class="message-line">
+				Hi, I am Dr Phineas, I am a General Physician, Virologist and a Cardiologist. I have been working in this field for 10 years now. I have a lot of experience in this field and I am sure I can help you with your problem.
+			  </p>
+			  <p class="message-line time">
+				Timing: 12:00 PM - 2:00 PM
+			  </p>
+			</div>
+		  </div>
+		  <div class="message-box">
+			<img src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="profile image">
+			<div class="message-content">
+			  <div class="message-header">
+				<div class="name">Dr Barbie</div>
+				<div class="star-checkbox">
+				  <input type="checkbox" id="star-2">
+				  <label for="star-2">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+					  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+				  </label>
+				</div>
+			  </div>
+			  <p class="message-line">
+				Hi, I am Dr Barbie, I am a General Physician, Virologist and a Cardiologist. I have been working in this field for 10 years now. I have a lot of experience in this field and I am sure I can help you with your problem.
+			  </p>
+			  <p class="message-line time">
+				Timing: 12:00 PM - 2:00 PM
+			  </p>
+			</div>
+		  </div>
+		  <div class="message-box">
+			<img src="https://images.unsplash.com/photo-1543965170-4c01a586684e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDZ8fG1hbnxlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="profile image">
+			<div class="message-content">
+			  <div class="message-header">
+				<div class="name">Dr Captain America</div>
+				<div class="star-checkbox">
+				  <input type="checkbox" id="star-3">
+				  <label for="star-3">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+					  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+				  </label>
+				</div>
+			  </div>
+			  <p class="message-line">
+				Hi there, I am Dr Captain America, I am a General Physician, Virologist and a Cardiologist. I have been working in this field for 10 years now. I have a lot of experience in this field and I am sure I can help you with your problem.
+			  </p>
+			  <p class="message-line time">
+				Timing: 12:00 PM - 2:00 PM
+			  </p>
+			</div>
+		  </div>
+		  <div class="message-box">
+			<img src="https://images.unsplash.com/photo-1533993192821-2cce3a8267d1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwbW9kZXJufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="profile image">
+			<div class="message-content">
+			  <div class="message-header">
+				<div class="name">Dr Strange</div>
+				<div class="star-checkbox">
+				  <input type="checkbox" id="star-4">
+				  <label for="star-4">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+					  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+				  </label>
+				</div>
+			  </div>
+			  <p class="message-line">
+				Hi there, I am Dr Strange, I am a General Physician, Virologist and a Cardiologist. I have been working in this field for 10 years now. I have a lot of experience in this field and I am sure I can help you with your problem.
+			  </p>
+			  <p class="message-line time">
+				Timing: 12:00 PM - 2:00 PM
+			  </p>
+			</div>
+            
+		  </div>
+          <div class="message-box">
+			<img src="https://images.unsplash.com/photo-1533993192821-2cce3a8267d1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwbW9kZXJufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="profile image">
+			<div class="message-content">
+			  <div class="message-header">
+				<div class="name">Dr Strange</div>
+				<div class="star-checkbox">
+				  <input type="checkbox" id="star-4">
+				  <label for="star-4">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+					  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+				  </label>
+				</div>
+			  </div>
+			  <p class="message-line">
+				Hi there, I am Dr Strange, I am a General Physician, Virologist and a Cardiologist. I have been working in this field for 10 years now. I have a lot of experience in this field and I am sure I can help you with your problem.
+			  </p>
+			  <p class="message-line time">
+				Timing: 12:00 PM - 2:00 PM
+			  </p>
+			</div>
+		</div>
+	  </div>
+	  </div>
+	  </div>
+
+      
+
+
+
+
+
+
+
+            
+        </div>
+    </main>
+</body>
+</html>
