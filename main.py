@@ -15,18 +15,18 @@ import numpy as np
 app = Flask(__name__)
 
 # Load the rf model using pickle
-with open("final_rf_model.pkl", "rb") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\final_rf_model.pkl", "rb") as file:
     loaded_rf_model = pickle.load(file)
 
 # Load the specialized_dict from JSON
-with open("disease_specialist_dict.json", "r") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\disease_specialist_dict.json", "r") as file:
     loaded_specialized_dict = json.load(file)
 
 # Load the prediction_encoder classes from JSON
-with open("encoder_data.json", "r") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\encoder_data.json", "r") as file:
     encoder_data = json.load(file)
 
-with open("X.pkl", "rb") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\X.pkl", "rb") as file:
     X = pickle.load(file)
 
 symptoms = X.columns.values
@@ -152,6 +152,11 @@ def clinicRedir():
 @app.route('/uploadRedir', methods =['POST', 'GET'])
 def uploadRedir():
     return render_template('upload.html')
+
+@app.route('/recRedir', methods =['POST', 'GET'])
+def recRedir():
+    response = {}
+    return render_template('recommender_html.html', response = response)
 
 
 @app.route('/userSignUp', methods =['POST'])
@@ -294,14 +299,23 @@ def reccomender():
             severity = specialist_info.get("severity", "Unknown")
             observed_symptoms = specialist_info.get("observed_symptoms", [])
 
-        response = {
-            "suspected_disease": final_prediction,
-            "specialist_department": specialist_department,
-            "severity": severity,
-            "observed_symptoms": observed_symptoms
-        }
+        
 
-        return render_template("result.html", **response)
+        clinics = firestoreDB.collection('clinics').where('specialties', 'array_contains', specialist_department).stream()
+        clinic_list = []
+        for clinic in clinics:
+            clinic_list.append(clinic.to_dict())
+        response = {
+        "suspected_disease": final_prediction,
+        "specialist_department": specialist_department,
+        "severity": severity,
+        "observed_symptoms": observed_symptoms,
+        "clinic_data": clinic_list  # Add the clinic data to the response dictionary
+    }
+
+
+
+        return render_template("recommender_html.html", response = response)
 
     return render_template("recommender_html.html")
 

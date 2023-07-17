@@ -22,5 +22,13 @@
             {% endfor %}
         </ul>
     </div>
+    <div>
+        {% for clinic in clinic_data%}
+        <strong>Clinic Name:</strong> {{ clinic['name'] }}
+        <strong>Email:</strong> {{ clinic['email'] }}
+        <strong>Phone:</strong> {{ clinic['phone'] }}
+        <strong>Primary Doctor:</strong> {{ clinic['prim_doc'] }}
+        {% endfor %}
+    </div>
 </body>
 </html>
