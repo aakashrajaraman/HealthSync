@@ -320,7 +320,23 @@ def reccomender():
     return render_template("recommender_html.html")
 
 
+@app.route('/book-appointment', methods = ['POST', 'GET'])
+def bookAppointment():
+    clinic_username = request.form['clinic_username']
+    patient_username = session['username']
+    time = request.form['time']
+    reason = request.form['reason']
+    symptoms = request.form['symptoms']
 
+    appointmentData = {
+        'clinic': clinic_username,
+        'patient': patient_username,
+        'time': time,
+        'reason': reason,
+        'symptoms': symptoms
+    }
+    firestoreDB.collection('appointments').add(appointmentData)
+    return render_template('patient_dashboard.html')
 
 
 if __name__ == '__main__':

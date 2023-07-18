@@ -493,7 +493,13 @@
             Primary Doctor: {{ clinic.prim_doc }}
           </p>
           <p class="message-line time">
-            Timing: 12:00 PM - 2:00 PM
+            <form action="/book-appointment" method="POST">
+              <input type="datetime-local" name="time" required>
+              <input type="text" name="reason" placeholder="Reason for Visit?" required>
+              <input type="hidden" name="clinic_username" value="{{ clinic.username }}">
+              <input type="hidden" name="symptoms" value="{{ response.observed_symptoms}}">
+              <button type="submit" class="book-btn">Book</button>
+            </form>
           </p>
         </div>
       </div>
