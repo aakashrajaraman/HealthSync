@@ -94,17 +94,18 @@ def login():
                     user_data = doc.to_dict()
                     if user_data['password'] == password:
                         session['name'] = user_data['name']
-                        session['date'] = user_data['date']
+                        if userType == 'patient':
+                            session['date'] = user_data['date']
                         session['user_id'] = doc.id
                         session['username'] = user_data['username']
-                        print(session['user_id'])
+                       
 
                         if userType == 'patient':
                             #get info of patient to render on page
                             name = user_data['name']
                             age = current_date-datetime.datetime.strptime(user_data['date'], '%m%d%Y').date()
                             years = age.days//365
-                            print(years)
+                            
 
 
 
