@@ -11,7 +11,6 @@ import re
 import pickle
 import json
 import numpy as np
-import time
 
 app = Flask(__name__)
 
@@ -216,7 +215,7 @@ def userSignUp():
     user_job = request.form['user_job']
     gender = request.form['gender']
     checkbox_values = request.form.getlist('checkbox')
-    
+    #check firestoredb patients collection to see if username/email already exists. if yes, render the register page with an error message.
     phone = int(phone)
     patient_data = {
         'name': name,
@@ -272,7 +271,7 @@ def clinicSignUp():
     firestoreDB.collection('clinics').add(clinic_data)
     return render_template('login.html')
 
-
+@app.route('/ocr', methods = ['POST'])
 @app.route('/upload', methods = ['POST'])
 def upload():
     pdf = request.files['file']
@@ -294,11 +293,13 @@ def upload():
 
 
 
+
+
 @app.route('/showDocs', methods = ['POST', 'GET'])
 def showDocs():
-    user_id = session['user_id']
+    username = session['username']
     bucket = client.get_bucket(bucket_path)
-    blobs = bucket.list_blobs(prefix='aakashrajaraman/') 
+    blobs = bucket.list_blobs(prefix=username+'/') 
     prefixes = set()
     toBeRendered =[]
 
