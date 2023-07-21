@@ -117,6 +117,7 @@ def login():
                             doctors = user_data['doctors']
 
                             total_patients = 0
+                            upcoming_patients = 0
 
 
                             appointmentsDB = firestoreDB.collection('appointments')
@@ -124,24 +125,30 @@ def login():
                             apps = []
                             for doc in appointments:
                                 app_data = doc.to_dict()
-                                patient_username = app_data.get('patient')
-                                if patient_username:
-                                    total_patients += 1
-                                    patient_doc = firestoreDB.collection('patients').where('username', '==', patient_username).limit(1).stream()
-                                    patient_doc = list(patient_doc)
-                                    if patient_doc:
-                                        app_data['patient_name'] = patient_doc[0].to_dict().get('name')
-                                        days= current_date-datetime.datetime.strptime(patient_doc[0].to_dict().get('date'), '%m%d%Y').date()
-                                        years = days.days//365
-                                        
-                                        app_data['patient_age'] = years
-                                apps.append(app_data)
-                                print(total_patients)
+                                app_date = app_data.get('time')
+                                findate = datetime.datetime.strptime(app_date, '%d-%m-%Y %I:%M %p').date()
+                                if findate > current_date:
+                                    upcoming_patients += 1
+                                    patient_username = app_data.get('patient')
+                                    if patient_username:
+                                        total_patients += 1
+                                        patient_doc = firestoreDB.collection('patients').where('username', '==', patient_username).limit(1).stream()
+                                        patient_doc = list(patient_doc)
+                                        if patient_doc:
+                                            app_data['patient_name'] = patient_doc[0].to_dict().get('name')
+                                            days= current_date-datetime.datetime.strptime(patient_doc[0].to_dict().get('date'), '%m%d%Y').date()
+                                            years = days.days//365
+                                            
+                                            app_data['patient_age'] = years
+                                    apps.append(app_data)
+                                
 
                             clinic_data = {
                                 "name": name,
                                 "doctors": doctors,
                                 "total_patients": int(total_patients),
+                                "upcoming_patients": int(upcoming_patients),
+                                "current_date": current_date.strftime("%d-%m-%Y"),
                             }
                             
                             

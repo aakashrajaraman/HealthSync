@@ -66,8 +66,8 @@
 		  </div>
 		  <div class="projects-section">
 			<div class="projects-section-header">
-			  <p>Patients</p>
-			  <p class="time">December, 12</p>
+			  <p>Appointments</p>
+			  <p class="time">{{clinic_data.current_date}}</p>
 			</div>
 			<div class="projects-section-line">
 			  <div class="projects-status">
@@ -76,7 +76,7 @@
 				  <span class="status-type">Current Patients</span>
 				</div>
 				<div class="item-status">
-				  <span class="status-number">4</span>
+				  <span class="status-number">{{clinic_data.upcoming_patients}}</span>
 				  <span class="status-type">Upcoming</span>
 				</div>
 				
