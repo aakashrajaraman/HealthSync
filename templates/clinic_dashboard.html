@@ -72,17 +72,14 @@
 			<div class="projects-section-line">
 			  <div class="projects-status">
 				<div class="item-status">
-				  <span class="status-number">10</span>
+				  <span class="status-number">{{clinic_data.total_patients}}</span>
 				  <span class="status-type">Current Patients</span>
 				</div>
 				<div class="item-status">
 				  <span class="status-number">4</span>
 				  <span class="status-type">Upcoming</span>
 				</div>
-				<div class="item-status">
-				  <span class="status-number">17</span>
-				  <span class="status-type">Total Patients this month</span>
-				</div>
+				
 			  </div>
 			  <div class="view-actions">
 				<button class="view-btn list-view" title="List View">
@@ -108,26 +105,14 @@
 			{%for appointment in appointments%}
 		  <div class="project-box-wrapper">
 			<div class="project-box" style="background-color: #cbfcfe;">
-			  <div class="project-box-header">
-				{% set appointment_time = appointment.time.astimezone(pytz.timezone('Asia/Kolkata')) %}
-				<span>{{appointment.time.strftime('%d %B, %Y %H:%M')}}</span>
-				<div class="more-wrapper">
-				  <button class="project-btn-more">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-					  <circle cx="12" cy="12" r="1" />
-					  <circle cx="12" cy="5" r="1" />
-					  <circle cx="12" cy="19" r="1" /></svg>
-				  </button>
-				</div>
-			  </div>
+			 
 			  <div class="project-box-content-header">
-				<p class="box-content-header">Diksha Chakravarty</p>
-				<p class="box-content-subheader">Virology</p>
+				<p class="box-content-header">{{appointment.department}}</p>
 			  </div>
 			  <div class="box-progress-wrapper">
-				<p class="box-progress-header">Dr Chakravarty</p><br>
-				
-				<p class="box-progress-percentage">Virology, General Physician</p>
+				<p class="box-progress-header">Patient: {{appointment.patient_name}}</p><br>
+				<p class="box-progress-header">Age: {{appointment.patient_age}} </p><br>
+				<p class="box-progress-header">Reason: {{appointment.reason}} </p><br>
 			  </div>
 			  <div class="project-box-footer">
 				<div class="participants">
@@ -139,7 +124,7 @@
 				  </button>
 				</div>
 				<div class="days-left" style="color: #107888;">
-				  2:00 PM
+				  {{appointment.time}}
 				</div>
 			  </div>
 			</div>
@@ -178,11 +163,9 @@
 				</div>
 			  </div>
 			  <p class="message-line">
-				Hi, I am Dr Barbie, I am a General Physician, Virologist and a Cardiologist. I have been working in this field for 10 years now. I have a lot of experience in this field and I am sure I can help you with your problem.
+				Hi, I am {{doctor}}, I am a General Physician, Virologist and a Cardiologist. I have been working in this field for 10 years now. I have a lot of experience in this field and I am sure I can help you with your problem.
 			  </p>
-			  <p class="message-line time">
-				Timing: 12:00 PM - 2:00 PM
-			  </p>
+			  
 			</div>
 		  </div>
 		  

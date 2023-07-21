@@ -116,7 +116,7 @@ def login():
                             username = user_data['username']
                             doctors = user_data['doctors']
 
-
+                            total_patients = 0
 
 
                             appointmentsDB = firestoreDB.collection('appointments')
@@ -124,18 +124,27 @@ def login():
                             apps = []
                             for doc in appointments:
                                 app_data = doc.to_dict()
-                                # Convert the 'time' field to the desired time zone (e.g., UTC+5:30).
-                                
+                                patient_username = app_data.get('patient')
+                                if patient_username:
+                                    total_patients += 1
+                                    patient_doc = firestoreDB.collection('patients').where('username', '==', patient_username).limit(1).stream()
+                                    patient_doc = list(patient_doc)
+                                    if patient_doc:
+                                        app_data['patient_name'] = patient_doc[0].to_dict().get('name')
+                                        days= current_date-datetime.datetime.strptime(patient_doc[0].to_dict().get('date'), '%m%d%Y').date()
+                                        years = days.days//365
+                                        
+                                        app_data['patient_age'] = years
                                 apps.append(app_data)
-
-                                
+                                print(total_patients)
 
                             clinic_data = {
                                 "name": name,
                                 "doctors": doctors,
+                                "total_patients": int(total_patients),
                             }
                             
-                            print(apps)
+                            
 
                             
 
@@ -355,7 +364,7 @@ def bookAppointment():
     symptoms = request.form['symptoms']
     department = request.form['department']
     #convert time to time
-    appointment_time = datetime.strptime(time_str, '%Y-%m-%dT%H:%M')
+    appointment_time = datetime.datetime.strptime(time, '%Y-%m-%dT%H:%M')
 
     # Format the datetime object to include date, time, and AM/PM.
     formatted_time = appointment_time.strftime('%d-%m-%Y %I:%M %p')
