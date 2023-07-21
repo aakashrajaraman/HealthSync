@@ -114,7 +114,27 @@ def login():
 
                             return render_template('patient_dashboard.html', name = name, age = years)
                         elif userType == 'clinic':
-                            return render_template('clinic_dashboard.html')
+                            #get info of clinic to render on page
+                            name = user_data['name']
+                            doctors = user_data['doctors']
+
+
+
+
+                            appointmentsDB = firestoreDB.collection('appointments')
+                            appointments = appointmentsDB.where('clinic', '==', doc.id).stream()
+                            
+
+                            clinic_data = {
+                                "name": name,
+                                "doctors": doctors,
+                            }
+                            
+
+
+
+
+                            return render_template('clinic_dashboard.html', clinic_data)
                     else:#wrong password
                         return render_template('login.html')
         else:#wrong username
