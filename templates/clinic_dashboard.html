@@ -103,47 +103,14 @@
 				</button>
 			  </div>
 			</div>
+			
 			<div class="project-boxes jsGridView">
-			  <div class="project-box-wrapper">
-				<div class="project-box" style="background-color: #cbfcfe;">
-				  <div class="project-box-header">
-					<span>December 10, 2020</span>
-					<div class="more-wrapper">
-					  <button class="project-btn-more">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-						  <circle cx="12" cy="12" r="1" />
-						  <circle cx="12" cy="5" r="1" />
-						  <circle cx="12" cy="19" r="1" /></svg>
-					  </button>
-				</div>
-			  </div>
-			  <div class="project-box-content-header">
-				<p class="box-content-header">Diksha Chakravarty</p>
-				<p class="box-content-subheader">Virology</p>
-			  </div>
-			  <div class="box-progress-wrapper">
-				<p class="box-progress-header">Dr Chakravarty</p><br>
-				
-				<p class="box-progress-percentage">Virology, General Physician</p>
-			  </div>
-			  <div class="project-box-footer">
-				<div class="participants">
-					<button class="add-participant" style="color: #0e7b83;">
-						<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-						  <path d="M12 5v14M5 12h14" />
-					</svg>
-				  </button>
-				</div>
-				<div class="days-left" style="color:  #107888;">
-				  12:00PM
-				</div>
-			  </div>
-			</div>
-		  </div>
+			{%for appointment in appointments%}
 		  <div class="project-box-wrapper">
 			<div class="project-box" style="background-color: #cbfcfe;">
 			  <div class="project-box-header">
-				<span>December 10, 2020</span>
+				{% set appointment_time = appointment.time.astimezone(pytz.timezone('Asia/Kolkata')) %}
+				<span>{{appointment.time.strftime('%d %B, %Y %H:%M')}}</span>
 				<div class="more-wrapper">
 				  <button class="project-btn-more">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
@@ -177,242 +144,31 @@
 			  </div>
 			</div>
 		  </div>
-
-		  <div class="project-box-wrapper">
-			<div class="project-box" style="background-color: #cbfcfe;">
-			  <div class="project-box-header">
-				<span>December 10, 2020</span>
-				<div class="more-wrapper">
-				  <button class="project-btn-more">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-					  <circle cx="12" cy="12" r="1" />
-					  <circle cx="12" cy="5" r="1" />
-					  <circle cx="12" cy="19" r="1" /></svg>
-				  </button>
-				</div>
-			  </div>
-			  <div class="project-box-content-header">
-				<p class="box-content-header">Diksha Chakravarty</p>
-				<p class="box-content-subheader">Virology</p>
-			  </div>
-			  <div class="box-progress-wrapper">
-				<p class="box-progress-header">Dr Chakravarty</p><br>
-				
-				<p class="box-progress-percentage">Virology, General Physician</p>
-			  </div>
-			  <div class="project-box-footer">
-				<div class="participants">
-				  
-				  <button class="add-participant" style="color: #0e7b83;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-					  <path d="M12 5v14M5 12h14" />
-					</svg>
-				  </button>
-				</div>
-				<div class="days-left" style="color: #107888;">
-				  2:00 PM
-				</div>
-			  </div>
-			</div>
-		  </div>
-		  <div class="project-box-wrapper">
-			<div class="project-box" style="background-color: #cbfcfe;">
-			  <div class="project-box-header">
-				<span>December 10, 2020</span>
-				<div class="more-wrapper">
-				  <button class="project-btn-more">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-					  <circle cx="12" cy="12" r="1" />
-					  <circle cx="12" cy="5" r="1" />
-					  <circle cx="12" cy="19" r="1" /></svg>
-				  </button>
-				</div>
-			  </div>
-			  <div class="project-box-content-header">
-				<p class="box-content-header">Diksha Chakravarty</p>
-				<p class="box-content-subheader">Virology</p>
-			  </div>
-			  <div class="box-progress-wrapper">
-				<p class="box-progress-header">Dr Chakravarty</p><br>
-				
-				<p class="box-progress-percentage">Virology, General Physician</p>
-			  </div>
-			  <div class="project-box-footer">
-				<div class="participants">
-				  
-				  <button class="add-participant" style="color: #0e7b83;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-					  <path d="M12 5v14M5 12h14" />
-					</svg>
-				  </button>
-				</div>
-				<div class="days-left" style="color: #107888;">
-				  2:00 PM
-				</div>
-			  </div>
-			</div>
-		  </div>
-		  <div class="project-box-wrapper">
-			<div class="project-box" style="background-color: #cbfcfe;">
-			  <div class="project-box-header">
-				<span>December 10, 2020</span>
-				<div class="more-wrapper">
-				  <button class="project-btn-more">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-					  <circle cx="12" cy="12" r="1" />
-					  <circle cx="12" cy="5" r="1" />
-					  <circle cx="12" cy="19" r="1" /></svg>
-				  </button>
-				</div>
-			  </div>
-			  <div class="project-box-content-header">
-				<p class="box-content-header">Diksha Chakravarty</p>
-				<p class="box-content-subheader">Virology</p>
-			  </div>
-			  <div class="box-progress-wrapper">
-				<p class="box-progress-header">Dr Chakravarty</p><br>
-				
-				<p class="box-progress-percentage">Virology, General Physician</p>
-			  </div>
-			  <div class="project-box-footer">
-				<div class="participants">
-				  
-				  <button class="add-participant" style="color: #0e7b83;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-					  <path d="M12 5v14M5 12h14" />
-					</svg>
-				  </button>
-				</div>
-				<div class="days-left" style="color: #107888;">
-				  2:00 PM
-				</div>
-			  </div>
-			</div>
-		  </div>
-		  <div class="project-box-wrapper">
-			<div class="project-box" style="background-color: #cbfcfe;">
-			  <div class="project-box-header">
-				<span>December 10, 2020</span>
-				<div class="more-wrapper">
-				  <button class="project-btn-more">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-					  <circle cx="12" cy="12" r="1" />
-					  <circle cx="12" cy="5" r="1" />
-					  <circle cx="12" cy="19" r="1" /></svg>
-				  </button>
-				</div>
-			  </div>
-			  <div class="project-box-content-header">
-				<p class="box-content-header">Diksha Chakravarty</p>
-				<p class="box-content-subheader">Virology</p>
-			  </div>
-			  <div class="box-progress-wrapper">
-				<p class="box-progress-header">Dr Chakravarty</p><br>
-				
-				<p class="box-progress-percentage">Virology, General Physician</p>
-			  </div>
-			  <div class="project-box-footer">
-				<div class="participants">
-				  
-				  <button class="add-participant" style="color: #0e7b83;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-					  <path d="M12 5v14M5 12h14" />
-					</svg>
-				  </button>
-				</div>
-				<div class="days-left" style="color: #107888;">
-				  2:00 PM
-				</div>
-			  </div>
-			</div>
-		  </div>
-		
-		  <div class="project-box-wrapper">
-			<div class="project-box" style="background-color: #cbfcfe;">
-			  <div class="project-box-header">
-				<span>December 10, 2020</span>
-				<div class="more-wrapper">
-				  <button class="project-btn-more">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
-					  <circle cx="12" cy="12" r="1" />
-					  <circle cx="12" cy="5" r="1" />
-					  <circle cx="12" cy="19" r="1" /></svg>
-				  </button>
-				</div>
-			  </div>
-			  <div class="project-box-content-header">
-				<p class="box-content-header">Diksha Chakravarty</p>
-				<p class="box-content-subheader">Virology</p>
-			  </div>
-			  <div class="box-progress-wrapper">
-				<p class="box-progress-header">Dr Chakravarty</p><br>
-				
-				<p class="box-progress-percentage">Virology, General Physician</p>
-			  </div>
-			  <div class="project-box-footer">
-				<div class="participants">
-				  
-				  <button class="add-participant" style="color: #0e7b83;">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-					  <path d="M12 5v14M5 12h14" />
-					</svg>
-				  </button>
-				</div>
-				<div class="days-left" style="color: #107888;">
-				  2:00 PM
-				</div>
-			  </div>
-			</div>
-		  </div>
-
-		  <div class="project-box-wrapper">
-			<div class="project-box" style="background-color: #ffffff;">
-			  <div class="project-box-header">
-				<div class="more-wrapper">
-				</div>
-			  </div>
-			</div>
-		  </div>
+{%endfor%}
+		  
 		</div>
 	  </div>
+
+
+
+
+
+
+
+
 	  <div class="messages-section">
-		<button class="messages-close">
-		  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
-			<circle cx="12" cy="12" r="10" />
-			<line x1="15" y1="9" x2="9" y2="15" />
-			<line x1="9" y1="9" x2="15" y2="15" /></svg>
-		</button>
+		
 		<div class="projects-section-header">
 		  <p>Doctors</p>
 		</div>
+		
 		<div class="messages">
-		  <div class="message-box">
-			<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="profile image">
-			<div class="message-content">
-			  <div class="message-header">
-				<div class="name">Dr Phineas</div>
-				<div class="star-checkbox">
-				  <input type="checkbox" id="star-1">
-				  <label for="star-1">
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
-						
-					  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-				  </label>
-				</div>
-			  </div>
-			  <p class="message-line">
-				Hi, I am Dr Phineas, I am a General Physician, Virologist and a Cardiologist. I have been working in this field for 10 years now. I have a lot of experience in this field and I am sure I can help you with your problem.
-			  </p>
-			  <p class="message-line time">
-				Timing: 12:00 PM - 2:00 PM
-			  </p>
-			</div>
-		  </div>
+		  {%for doctor in clinic_data.doctors%}
 		  <div class="message-box">
 			<img src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="profile image">
 			<div class="message-content">
 			  <div class="message-header">
-				<div class="name">Dr Barbie</div>
+				<div class="name">{{doctor}}</div>
 				<div class="star-checkbox">
 				  <input type="checkbox" id="star-2">
 				  <label for="star-2">
@@ -429,49 +185,10 @@
 			  </p>
 			</div>
 		  </div>
-		  <div class="message-box">
-			<img src="https://images.unsplash.com/photo-1543965170-4c01a586684e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDZ8fG1hbnxlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="profile image">
-			<div class="message-content">
-			  <div class="message-header">
-				<div class="name">Dr Captain America</div>
-				<div class="star-checkbox">
-				  <input type="checkbox" id="star-3">
-				  <label for="star-3">
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
-					  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-				  </label>
-				</div>
-			  </div>
-			  <p class="message-line">
-				Hi there, I am Dr Captain America, I am a General Physician, Virologist and a Cardiologist. I have been working in this field for 10 years now. I have a lot of experience in this field and I am sure I can help you with your problem.
-			  </p>
-			  <p class="message-line time">
-				Timing: 12:00 PM - 2:00 PM
-			  </p>
-			</div>
-		  </div>
-		  <div class="message-box">
-			<img src="https://images.unsplash.com/photo-1533993192821-2cce3a8267d1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwbW9kZXJufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="profile image">
-			<div class="message-content">
-			  <div class="message-header">
-				<div class="name">Dr Strange</div>
-				<div class="star-checkbox">
-				  <input type="checkbox" id="star-4">
-				  <label for="star-4">
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
-					  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-				  </label>
-				</div>
-			  </div>
-			  <p class="message-line">
-				Hi there, I am Dr Strange, I am a General Physician, Virologist and a Cardiologist. I have been working in this field for 10 years now. I have a lot of experience in this field and I am sure I can help you with your problem.
-			  </p>
-			  <p class="message-line time">
-				Timing: 12:00 PM - 2:00 PM
-			  </p>
-			</div>
-		  </div>
+		  
+		  {%endfor%}
 		</div>
+	
 	  </div>
 	  </div>
 	  </div>

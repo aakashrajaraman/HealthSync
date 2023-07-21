@@ -498,6 +498,7 @@
               <input type="text" name="reason" placeholder="Reason for Visit?" required>
               <input type="hidden" name="clinic_username" value="{{ clinic.username }}">
               <input type="hidden" name="symptoms" value="{{ response.observed_symptoms}}">
+			  <input type="hidden" name="department" value="{{ response.specialist_department}}">
               <button type="submit" class="book-btn">Book</button>
             </form>
           </p>

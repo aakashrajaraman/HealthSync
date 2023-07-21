@@ -11,6 +11,7 @@ import re
 import pickle
 import json
 import numpy as np
+import time
 
 app = Flask(__name__)
 
@@ -105,36 +106,40 @@ def login():
                             name = user_data['name']
                             age = current_date-datetime.datetime.strptime(user_data['date'], '%m%d%Y').date()
                             years = age.days//365
-                            
-
-
-
-
+                        
 
 
                             return render_template('patient_dashboard.html', name = name, age = years)
                         elif userType == 'clinic':
                             #get info of clinic to render on page
                             name = user_data['name']
+                            username = user_data['username']
                             doctors = user_data['doctors']
 
 
 
 
                             appointmentsDB = firestoreDB.collection('appointments')
-                            appointments = appointmentsDB.where('clinic', '==', doc.id).stream()
-                            
+                            appointments = appointmentsDB.where('clinic', '==', username).stream()
+                            apps = []
+                            for doc in appointments:
+                                app_data = doc.to_dict()
+                                # Convert the 'time' field to the desired time zone (e.g., UTC+5:30).
+                                
+                                apps.append(app_data)
+
+                                
 
                             clinic_data = {
                                 "name": name,
                                 "doctors": doctors,
                             }
                             
+                            print(apps)
 
+                            
 
-
-
-                            return render_template('clinic_dashboard.html', clinic_data)
+                            return render_template('clinic_dashboard.html', clinic_data = clinic_data, appointments = apps)
                     else:#wrong password
                         return render_template('login.html')
         else:#wrong username
@@ -348,13 +353,21 @@ def bookAppointment():
     time = request.form['time']
     reason = request.form['reason']
     symptoms = request.form['symptoms']
+    department = request.form['department']
+    #convert time to time
+    appointment_time = datetime.strptime(time_str, '%Y-%m-%dT%H:%M')
+
+    # Format the datetime object to include date, time, and AM/PM.
+    formatted_time = appointment_time.strftime('%d-%m-%Y %I:%M %p')
+
 
     appointmentData = {
         'clinic': clinic_username,
         'patient': patient_username,
-        'time': time,
+        'time': formatted_time,
         'reason': reason,
-        'symptoms': symptoms
+        'symptoms': symptoms,
+        "department": department
     }
     firestoreDB.collection('appointments').add(appointmentData)
     return render_template('patient_dashboard.html')
