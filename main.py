@@ -105,10 +105,11 @@ def login():
                             name = user_data['name']
                             age = current_date-datetime.datetime.strptime(user_data['date'], '%m%d%Y').date()
                             years = age.days//365
+                            gender = user_data['gender']
                         
 
 
-                            return render_template('patient_dashboard.html', name = name, age = years)
+                            return render_template('patient_dashboard.html', name = name, age = years, gender = gender)
                         elif userType == 'clinic':
                             #get info of clinic to render on page
                             name = user_data['name']

@@ -17,9 +17,10 @@ body {
 }
 /* headings */
 h1 {
-    font-weight: bold;
+    font-weight: 100;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    font-family: "Bebas Neue";
 }
 .heading{
     font-weight: 100;
@@ -83,18 +84,38 @@ button {
     text-decoration: none;
     position: relative;
     border: none;
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 1rem;
+    
+    font-weight: 700;
     color: #fff;
     width: 9em;
     height: 4em;
     text-align: center;
-    background: linear-gradient(90deg, #4158d0, #f441a5, #ffcc70, #4158d0);
+    background: linear-gradient(90deg, #709eec, #3653e4, #3361df, #45b9ef);
     background-size: 300%;
     border-radius: 2rem;
     z-index: 1;
     cursor: pointer;
   }
+ #signUp {
+    text-decoration: none;
+    position: relative;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #0d3673;
+    width: 9em;
+    font-weight: bold;
+    height: 4em;
+    text-align: center;
+    background: linear-gradient(90deg, #ffffff, #ffffff, #ffffff, #ffffff);
+    background-size: 300%;
+    border-radius: 2rem;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+
   button:hover {
     animation: ani 8s linear infinite;
     border: none;
@@ -111,10 +132,6 @@ button {
 }
 
 
-button:active {
-  background: linear-gradient(90deg, #4158d0, #f441a5, #ffcc70, #4158d0);
-}
-
 /* button */
 
 /* container */
@@ -124,8 +141,8 @@ button:active {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     position: relative;
     overflow: hidden;
-    width: 90%;
-    max-width: 40rem;
+    width: 130%;
+    max-width: 50rem;
     min-height: 30rem;
     margin: 0 auto;
   }
