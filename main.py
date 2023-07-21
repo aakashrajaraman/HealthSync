@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import os
 from google.cloud import storage
 from itertools import chain
+import torch
 
 os.environ['USE_TORCH'] = '1'
 
