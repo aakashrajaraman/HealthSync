@@ -1,5 +1,5 @@
 # create flask app
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import firebase_admin
 from firebase_admin import credentials, firestore
 import datetime
@@ -15,18 +15,18 @@ import numpy as np
 app = Flask(__name__)
 
 # Load the rf model using pickle
-with open(r"D:\Backup\Desktop\programs\HealthSync\final_rf_model.pkl", "rb") as file:
+with open(r"final_rf_model.pkl", "rb") as file:
     loaded_rf_model = pickle.load(file)
 
 # Load the specialized_dict from JSON
-with open(r"D:\Backup\Desktop\programs\HealthSync\disease_specialist_dict.json", "r") as file:
+with open(r"disease_specialist_dict.json", "r") as file:
     loaded_specialized_dict = json.load(file)
 
 # Load the prediction_encoder classes from JSON
-with open(r"D:\Backup\Desktop\programs\HealthSync\encoder_data.json", "r") as file:
+with open(r"encoder_data.json", "r") as file:
     encoder_data = json.load(file)
 
-with open(r"D:\Backup\Desktop\programs\HealthSync\X.pkl", "rb") as file:
+with open(r"X.pkl", "rb") as file:
     X = pickle.load(file)
 
 symptoms = X.columns.values
@@ -54,7 +54,7 @@ def to_camel_case(string):
 
 
 load_dotenv()
-path = os.getenv('FIREBASE_KEY_PATH')
+path = "key.json"
 bucket_path = "healthsync-c9b49.appspot.com"
 current_date = datetime.date.today()
 
@@ -171,6 +171,7 @@ def logout():
 
 @app.route('/userRedir', methods =['POST', 'GET'])
 def userRedir():
+    
     return render_template('userSignUp.html')
 
 @app.route('/patientRedir', methods =['POST', 'GET'])
@@ -215,32 +216,57 @@ def userSignUp():
     user_job = request.form['user_job']
     gender = request.form['gender']
     checkbox_values = request.form.getlist('checkbox')
-    #check firestoredb patients collection to see if username/email already exists. if yes, render the register page with an error message.
-    phone = int(phone)
-    patient_data = {
-        'name': name,
-        'username': username,
-        'user_email': user_email,
-        'password': password,
-        'address': address,
-        'phone': phone,
-        'date': date,
-        'aadhaar': aadhaar,
-        'user_bio': user_bio,
-        'user_job': user_job,
-        'checkbox_values': checkbox_values,
-        'gender': gender
-    }
-    firestoreDB.collection('patients').add(patient_data)
+    
+    #validation
+    patientRef = firestoreDB.collection('patients')
+    #username
+    query = patientRef.where('username', '==', username).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('Username already exists')
+        return redirect(url_for('userRedir'))
+    #user_email
+    query = patientRef.where('user_email', '==', user_email).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('User email already exists')
+        return redirect(url_for('userRedir'))
+    #phone
+    query = patientRef.where('phone', '==', phone).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('Phone number already exists')
+        return redirect(url_for('userRedir'))
+    #aadhaar
+    query = patientRef.where('aadhaar', '==', aadhaar).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('Aadhaar already exists')
+        return redirect(url_for('userRedir'))
+        
+    else :    
+        #check firestoredb patients collection to see if username/email already exists. if yes, render the register page with an error message.
+        phone = int(phone)
+        patient_data = {
+            'name': name,
+            'username': username,
+            'user_email': user_email,
+            'password': password,
+            'address': address,
+            'phone': phone,
+            'date': date,
+            'aadhaar': aadhaar,
+            'user_bio': user_bio,
+            'user_job': user_job,
+            'checkbox_values': checkbox_values,
+            'gender': gender
+        }
+        firestoreDB.collection('patients').add(patient_data)
 
-    foldername= username
-    bucket = client.get_bucket(bucket_path)
-    blob = bucket.blob(foldername+'/')
-    blob.upload_from_string('')
+        foldername= username
+        bucket = client.get_bucket(bucket_path)
+        blob = bucket.blob(foldername+'/')
+        blob.upload_from_string('')
 
 
 
-    return render_template('login.html')
+        return render_template('test.html')
 
 @app.route('/clinicSignUp', methods =['POST'])
 def clinicSignUp():
@@ -254,6 +280,24 @@ def clinicSignUp():
     email = request.form['email']
     phone = request.form['phone']
     specialties = request.form.getlist('specialties')
+    
+    #validation
+    clinicRef = firestoreDB.collection('clinics')
+    #username
+    query = clinicRef.where('username', '==', username).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('Username already exists')
+        return redirect(url_for('userRedir'))
+    #user email
+    query = clinicRef.where('email', '==', email).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('User email already exists')
+        return redirect(url_for('userRedir'))
+    #phone
+    query = clinicRef.where('phone', '==', phone).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('Phone number already exists')
+        return redirect(url_for('userRedir'))
 
     clinic_data = {
         'name': name,
