@@ -1,5 +1,5 @@
 # create flask app
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import firebase_admin
 from firebase_admin import credentials, firestore
 import datetime
@@ -218,6 +218,32 @@ def userSignUp():
     checkbox_values = request.form.getlist('checkbox')
     #check firestoredb patients collection to see if username/email already exists. if yes, render the register page with an error message.
     phone = int(phone)
+    #validation
+    patientRef = firestoreDB.collection('patients')
+    #username
+    query = patientRef.where('username', '==', username).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('Username already exists')
+        return redirect(url_for('userRedir'))
+    #user_email
+    query = patientRef.where('user_email', '==', user_email).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('User email already exists')
+        return redirect(url_for('userRedir'))
+    #phone
+    query = patientRef.where('phone', '==', phone).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('Phone number already exists')
+        return redirect(url_for('userRedir'))
+    #aadhaar
+    query = patientRef.where('aadhaar', '==', aadhaar).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('Aadhaar already exists')
+        return redirect(url_for('userRedir'))
+
+
+
+
     patient_data = {
         'name': name,
         'username': username,
@@ -268,6 +294,24 @@ def clinicSignUp():
         'prim_doc': prim_doc,
         'specialties': specialties
     }
+    clinicRef = firestoreDB.collection('clinics')
+    query = clinicRef.where('username', '==', username).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('Username already exists')
+        return redirect(url_for('userRedir'))
+    #user email
+    query = clinicRef.where('email', '==', email).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('User email already exists')
+        return redirect(url_for('userRedir'))
+    #phone
+    query = clinicRef.where('phone', '==', phone).limit(1).stream()
+    if len(list(query)) > 0 :
+        flash('Phone number already exists')
+        return redirect(url_for('userRedir'))
+
+
+
 
     firestoreDB.collection('clinics').add(clinic_data)
     return render_template('login.html')
