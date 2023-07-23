@@ -298,17 +298,17 @@ def clinicSignUp():
     query = clinicRef.where('username', '==', username).limit(1).stream()
     if len(list(query)) > 0 :
         flash('Username already exists')
-        return redirect(url_for('userRedir'))
+        return redirect(url_for('clinicRedir'))
     #user email
     query = clinicRef.where('email', '==', email).limit(1).stream()
     if len(list(query)) > 0 :
         flash('User email already exists')
-        return redirect(url_for('userRedir'))
+        return redirect(url_for('clinicRedir'))
     #phone
     query = clinicRef.where('phone', '==', phone).limit(1).stream()
     if len(list(query)) > 0 :
         flash('Phone number already exists')
-        return redirect(url_for('userRedir'))
+        return redirect(url_for('clinicRedir'))
 
 
 
