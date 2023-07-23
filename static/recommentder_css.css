@@ -465,6 +465,18 @@ p {
 	opacity: 0.7;
 }
 
+.book-btn{
+	background-color: #0a74aa;
+	color: #fff;
+	border-radius: 0.5em;
+	font-size: 0.7rem;
+	font-family: 'Montserrat';
+	border: none;
+	padding: 0.3rem;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
 .form1{
 	margin-top: -5%;
 	font-family: 'Montserrat';
@@ -476,6 +488,7 @@ p {
 	background-color: #3094c3;
 	color: #fff;
 	padding-left: 0.4rem;
+	padding-right: 0.4rem;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 	color: rgb(255, 255, 255);
