@@ -10,7 +10,7 @@
 <div class="sidebar">
   
 	<h1 class="logo" align ="center">H<span>ealth</span>S<span>ync</span></h1>
-	<i class="fa fa-chevron-left menu-icon"></i>
+	
 	<ul class="sidenav">
 		<li class="active"><i class="fa fa-home"></i><a href="{{url_for('patientRedir')}}"> Dashboard
 			<span class="span1"><i class="fa fa-angle-right"></i></span>			
@@ -44,10 +44,8 @@
 	<div class="com-box">
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
+       <br>
+        
     
         <form id= "uploadForm" action="{{ url_for('upload') }}" method = "post" enctype="multipart/form-data">
 			<h1>Upload Medical Documents</h1>
@@ -57,7 +55,7 @@
 			<input type="file" id="file" name="file" accept=".pdf,.doc,.docx">
 			<label for="name">Name:</label>
 			<input type="text" id="name" name="name" placeholder="Enter name">
-			<label for="metadata">Metadata:</label>
+			<label for="metadata">Additional Information:</label>
 			<textarea id="metadata" name="metadata" placeholder="Any additional info?"></textarea>
 			<button type="submit">Upload</button>
 		</form>

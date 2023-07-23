@@ -245,7 +245,10 @@ margin-right: 20px;vertical-align: text-bottom;height: 26px; }
 	border-radius: 10px;
 }
 .com-inner{ width: 120%;float: left;margin-left: 0px;}
-
+a{
+	text-decoration: none;
+	color: #FFFFFF;
+}
 .table-box{
 	width:70%;
   	height: 320px;
@@ -414,7 +417,7 @@ table th {font-size: .85em;letter-spacing: .1em;text-transform: uppercase;}
 	justify-content: space-between;
 }
 .analytics__header-content_header {
-	font-family: 'Bebas Neue', sans-serif;
+	font-family: 'Montserrat';
 	letter-spacing: 1.1px;
 	line-height: 36px;
 	margin-top: 23px;

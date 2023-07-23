@@ -31,7 +31,7 @@ body {
 
   
 .sidebar {
-    width: 13.75rem;
+  width: 16.75rem;
     background: var(--darkblue);
     padding: 1.563rem;
     margin-top: 2.5rem;

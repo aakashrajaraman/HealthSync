@@ -31,7 +31,7 @@ body {
 
   
 .sidebar {
-    width: 13.75rem;
+    width: 16.75rem;
     background: var(--darkblue);
     padding: 1.563rem;
     margin-top: 2.5rem;
@@ -49,6 +49,7 @@ body {
   width: 88.44rem;
   float: left;
   padding: 1.563rem;
+margin-top: -4%;
 }
 .logo span {
     font-size: 2rem;
@@ -118,6 +119,7 @@ body {
     padding: 0.938rem 1.563rem;
     box-sizing: border-box;
     border-radius: 0.625rem;
+    margin-top: 0;
   }
 
   .input {
@@ -167,9 +169,9 @@ body {
     font-weight: bold;
     margin-bottom: 20px;
   }
-  .com-box .file{
+  .com-box #file{
     color: var(--font-color);
-    font-size: 1.5rem;
+    font-size: 0.9rem;
     font-weight: bold;
     margin-bottom: 20px;
   }
@@ -179,10 +181,7 @@ body {
     font-weight: bold;
 
     }
-  .com-box input[type="file"]{
-
-    float: left;
-  }
+  
  
   
   .com-box form input[type="text"],

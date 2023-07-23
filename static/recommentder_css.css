@@ -1,9 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 * {
 	border: 0;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
+:root {
+	--darkblue: #ffffff;
+	--lightblue: #ffffff;
+	--blue: #2bc2cd;
+	--nbox: #323249;
+	--black: #ffffff;
+	--font-color: #056896;
+	--font-light: #878aa7;
+	--white: #fff;
+	--shadow: 0 0 0.375rem 0.25rem rgba(168, 200, 206, 0.907);
+  }
 :root {
 	--hue: 223;
 	--bg: #ffff;
@@ -16,6 +28,84 @@ a {
 	color: hsl(var(--hue),90%,50%);
 	transition: color var(--trans-dur);
 }
+  
+.sidebar {
+	width: 14.75rem;
+	  background: var(--darkblue);
+	  padding: 1.563rem;
+	  height: 100%;
+	  position: relative;
+	  transition: 1s ease-in-out;
+	  float: left;
+	  font-weight: 100;
+	  box-shadow: var(--shadow);
+	}
+	
+
+	.logo span {
+		font-size: 2rem;
+		color: var(--font-light);
+		font-weight: normal;
+	  }
+	  .logo {
+		color: var(--blue);
+		font-weight: bold;
+		font-size: 2rem;
+	  }
+
+
+	.sidenav {
+		margin-top: 1.25rem;
+	  }
+	  .sidenav li {
+		list-style: none;
+		padding: 0.75rem 0.625rem;
+		border-radius: 0.625rem;
+		margin-bottom: 0.625rem;
+		font-size: 0.738rem;
+		font-family: 'Montserrat';
+		font-weight: bold;
+		
+	  }
+	  
+	  .sidenav li:hover {
+		background-color: rgba(29, 20, 156, 0.06);
+	  }
+	  .sidenav li i {
+		color: var(--font-color);
+		padding-right: 0.438rem;
+	  }
+	  
+	  .sidenav li a {
+		text-decoration: none;
+		color: var(--font-color);
+	  }
+	  .active {
+		background: var(--blue) !important;
+		position: relative;
+	  }
+	  .sidenav li span {
+		float: right;
+	  }
+	  
+	  .sidenav .active a {
+		color: var(--white) !important;
+	  }
+	  
+	  .sidenav .active i {
+		color: var(--white) !important;
+	  }
+	  .active:after {
+		content: "";
+		position: absolute;
+		right: -1.5rem;
+		width: 0.25rem;
+		height: 2.5rem;
+		top: 2px;
+		background: var(--blue);
+		border-radius: 0.375rem 0 0 0.375rem;
+	  }
+  
 a:focus-visible,
 a:hover {
 	text-decoration: none;
@@ -35,6 +125,7 @@ body {
 		background-color var(--trans-dur),
 		color var(--trans-dur);
 }
+
 h1 {
 	font-size: 2em;
 	margin: 0 0 0.75rem;
@@ -79,7 +170,7 @@ p {
 	padding: 10px;
 	background-color: rgba(71, 50, 29, 0.5); /* Use rgba to set a transparent background color */
 	box-shadow: 0 0 10px rgba(11, 68, 167, 0.5); /* Adjust the box shadow as needed */
-	background-image: url("doc.png"); /* Replace "path/to/your/image.jpg" with the actual path to your image */
+	background-image: url("logo1.jpg"); /* Replace "path/to/your/image.jpg" with the actual path to your image */
 	background-size: cover;
 	opacity: 0.85;
 }
@@ -102,7 +193,7 @@ p {
 }
 .login__btn:not(:disabled):focus-visible,
 .login__btn:not(:disabled):hover {
-	background-color: hsl(var(--hue),90%,30%);
+	background-color: #2bc2cd;
 }
 
 .login__btn {
@@ -110,7 +201,7 @@ p {
 		margin: 0 auto;
 		width: 200px; /* Adjust the width as needed */
 		padding: 10px;
-		background-color: #0f92a9;
+		background-color: #2bc2cd;
 		color: white;
 		font-weight: bold;
 		border: none;
@@ -161,17 +252,24 @@ p {
 .login__form,
 .login__form-wrapper {
 	margin: auto;
+	margin-top: 8%;
 }
 .login__form {
 	padding: 0 1.5em;
 	width: 100%;
 }
 .login__form-wrapper {
-	max-width: 18em;
+	
+	font-family: 'Montserrat';
+}
+.login__form-wrapper h1{
+	
+	font-family: 'Montserrat';
+	color: #fff;
 }
 .login__label {
 	display: block;
-	font-weight: 700;
+	font-weight: bold;
 	
 }
 .login__label--horz {
@@ -182,6 +280,7 @@ p {
 .login__label,
 .login__label + a
  {
+	color: #000;
 	font-size: 1em;
 	line-height: 2;
 }
@@ -262,7 +361,7 @@ p {
 	color: var(--main-color);
 }
 .projects-section-header p {
-	font-size: 24px;
+	font-size: 1.6rem;
 	line-height: 32px;
 	font-weight: 700;
 	opacity: 0.9;
@@ -273,7 +372,6 @@ p {
 	flex-shrink: 0;
 	padding-bottom: 32px;
 	background-color: var(--projects-section);
-	margin-left: 24px;
 	flex: 1;
 	width: 100%;
 	border-radius: 30px;
@@ -312,7 +410,7 @@ p {
 	width: 100%;
 }
 .message-box:hover {
-	background-color: #6ea3cf;
+	background-color: #c0e0fa;
 	border-top-color: var(--link-color-hover);
 }
 .message-box:hover + .message-box {
@@ -366,10 +464,22 @@ p {
 	color: var(--secondary-color);
 	opacity: 0.7;
 }
-.message-line.time {
-	text-align: right;
-	margin-bottom: 0;
+
+.form1{
+	margin-top: -5%;
+	font-family: 'Montserrat';
+	font-size: 0.7rem;
+	
 }
+.form1 input{
+	border-radius: 1em;
+	background-color: #3094c3;
+	color: #fff;
+	padding-left: 0.4rem;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: rgb(255, 255, 255);
+  }
 @media screen and (max-width: 880px) {
 	.messages-section {
 		transform: translateX(100%);
