@@ -341,6 +341,7 @@ table th {font-size: .85em;letter-spacing: .1em;text-transform: uppercase;}
   background: var(--black);
   border-radius: 50%;
   margin-left: 105px;
+  margin-top: 20px;
 }
 .circle-wrap .circle .mask,
 .circle-wrap .circle .fill {
