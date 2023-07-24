@@ -15,18 +15,18 @@ import numpy as np
 app = Flask(__name__)
 
 # Load the rf model using pickle
-with open(r"final_rf_model.pkl", "rb") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\final_rf_model.pkl", "rb") as file:
     loaded_rf_model = pickle.load(file)
 
 # Load the specialized_dict from JSON
-with open(r"disease_specialist_dict.json", "r") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\disease_specialist_dict.json", "r") as file:
     loaded_specialized_dict = json.load(file)
 
 # Load the prediction_encoder classes from JSON
-with open(r"encoder_data.json", "r") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\encoder_data.json", "r") as file:
     encoder_data = json.load(file)
 
-with open(r"X.pkl", "rb") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\X.pkl", "rb") as file:
     X = pickle.load(file)
 
 symptoms = X.columns.values
@@ -78,7 +78,7 @@ def index():
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST' and 'id' in request.form and 'password' in request.form and 'userType' in request.form:
-      
+        global userType
         id = request.form['id']
         password = request.form['password']
         userType = request.form['userType']
@@ -87,6 +87,7 @@ def login():
             
         elif userType == 'clinic':
             collection = "clinics"
+        
         user_ref = firestoreDB.collection(collection)
         query = user_ref.where('username', '==', id).limit(1).stream()
         if query:
@@ -97,7 +98,8 @@ def login():
                         if userType == 'patient':
                             session['date'] = user_data['date']
                         session['user_id'] = doc.id
-                        session['username'] = user_data['username']
+                        session['user_email'] = user_data['user_email']
+                        
                        
 
                         if userType == 'patient':
@@ -106,7 +108,12 @@ def login():
                             age = current_date-datetime.datetime.strptime(user_data['date'], '%m%d%Y').date()
                             years = age.days//365
                             gender = user_data['gender']
-                        
+                            session['userType'] = 'patient'
+                            session['username'] = user_data['username']
+                            session['phone'] = user_data['phone']
+                            session['address'] = user_data['address']
+                            session['user_bio'] = user_data['user_bio']
+                            session['gender'] = user_data['gender']
 
 
                             return render_template('patient_dashboard.html', name = name, age = years, gender = gender)
@@ -115,7 +122,7 @@ def login():
                             name = user_data['name']
                             username = user_data['username']
                             doctors = user_data['doctors']
-
+                            session['userType'] = 'clinic'
                             total_patients = 0
                             upcoming_patients = 0
 
@@ -338,7 +345,29 @@ def upload():
 
 
 
+@app.route('/profile', methods = ['POST', 'GET'])
+def profile():
+    if session['userType'] == 'patient':
+        name = session['name']
+        email = session['user_email']
+        phone = session['phone']
+        age = current_date-datetime.datetime.strptime(session['date'], '%m%d%Y').date()
+        age = age.days//365
+        address = session['address']
+        bio = session['user_bio']
+        gender = session['gender']
 
+        patient_data = {
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'age': age,
+            'address': address,
+            'bio': bio,
+            'gender': gender
+        }
+
+        return render_template('profile.html', patient_data = patient_data)
 
 @app.route('/showDocs', methods = ['POST', 'GET'])
 def showDocs():
