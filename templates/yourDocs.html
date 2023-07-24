@@ -4,6 +4,7 @@
 	<title>Your Documents</title>
 	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/yourDocs.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
 
@@ -30,6 +31,24 @@
 </div>
 
 <div class="main">
+	<br><br>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	
 	<div class="main-top">
 		<input type="text" name="" class="input" placeholder="Search">
 		<div class="top-right">
@@ -40,24 +59,72 @@
 		</div>
 		<div class="clearfix"></div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
+	
+	
+	
 	<br>
 	<br>
 	
 
-	
-	<h1>Your Current Documents on Record</h1>
+	<p align='center' style='font-size: 35px; font-weight: bold;'>Your Current Documents on Record</p>
+
+
 	<br>
-	<div class="com-box">
-      
+	<br>
 
-{%for doc in toBeRendered%}
-<a href = "{{doc['pdf_link']}}">{{doc['pdf_name']}} &nbsp; &nbsp; &nbsp;&nbsp; Notes: {{doc['metadata']}}</a>
+	<div class="container"> 
+	<div class="maina-overview">
+		{% for doc in toBeRendered %}
+		  <div class="overviewCard">
+			<div class="overviewCard-icon overviewCard-icon--document">         
+			  <i class="far fa-file-alt"></i>
+			</div>
+			<div class="overviewCard-description">
+			  
+				<a href="{{ doc['pdf_link'] }}" class="overviewCard-title text-light">{{ doc['pdf_name'] }} </a>
+			
+			  <p class="overviewCard-subtitle">{{ doc['metadata'] }}</p>
+			  
+			</div>
+		
+		  </div>
+		{% endfor %}
+	  
+		<div class="overviewCard">
+		  <div class="overviewCard-icon overviewCard-icon--calendar">
+			<i class="far fa-file-alt"></i>
+		  </div>
+		  <div class="overviewCard-description">
+			<h3 class="overviewCard-title text-light">Blood Report</h3>
+			<p class="overviewCard-subtitle">Bood Report-2023. Details of blood test in lab</p>
+		  </div>
+		</div>
+	 <!--
+		<div class="overviewCard">
+		  <div class="overviewCard-icon overviewCard-icon--calendar">
+			<i class="far fa-file-alt"></i>
+		  </div>
+		  <div class="overviewCard-description">
+			<h3 class="overviewCard-title text-light">Pathology Report</h3>
+			<p class="overviewCard-subtitle">Pathology Checkup for recent vaccinations</p>
+		  </div>
+		</div>
+	  
+		<div class="overviewCard">
+		  <div class="overviewCard-icon overviewCard-icon--mail">
+			<i class="far fa-file-alt"></i>
+		  </div>
+		  <div class="overviewCard-description">
+			<h3 class="overviewCard-title text-light">X-Ray Scans</h3>
+			<p class="overviewCard-subtitle">X-Ray report for the latest injury in arm</p>
+		  </div>
+		</div>
+	  </div>
+	 -->
+	  
+		  
+		  </div>
 
-{%endfor%}
 
       
 	</div>
