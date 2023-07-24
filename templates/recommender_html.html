@@ -24,7 +24,7 @@
 			<li><i class="fa fa-calendar"></i><a href="{{url_for('uploadRedir')}}"> Upload Documents</a></li>
 			<li><i class="fa fa-clone"></i><a href="{{url_for('recRedir')}}"> Recommendations</a></li>
 			<li><i class="fa fa-file-text"></i><a href="{{url_for('logout')}}"> Log out</a></li>
-			<br><br><br><br><br><br><br>
+			<br><br>
 			<li><i class="fa fa-file-text"></i><a href="#"> Translate</a></li>
 			<li id="google_translate_element"></li>
 
@@ -44,7 +44,6 @@
 
 								<select class="login__field dropdown" type="text" name="symptom1" id="symptom1"
 									required>
-									<option value="" disabled selected>Select Symptoms</option>
 									<option value="" disabled selected>Select Symptoms</option>
 									<option value="Itching">Itching</option>
 									<option value="Skin Rash">Skin Rash</option>
@@ -189,7 +188,6 @@
 						<div class="dropdown-wrapper">
 							<select class="login__field dropdown" type="text" name="symptom2" id="symptom2" required>
 								<option value="" disabled selected>Select Symptoms</option>
-								<option value="" disabled selected>Select Symptoms</option>
 								<option value="Itching">Itching</option>
 								<option value="Skin Rash">Skin Rash</option>
 								<option value="Nodal Skin Eruptions">Nodal Skin Eruptions</option>
@@ -330,7 +328,6 @@
 						<label class="login__label" for="symptom3">Symptom 3</label>
 						<div class="dropdown-wrapper">
 							<select class="login__field dropdown" type="text" name="symptom3" id="symptom3" required>
-								<option value="" disabled selected>Select Symptoms</option>
 								<option value="" disabled selected>Select Symptoms</option>
 								<option value="Itching">Itching</option>
 								<option value="Skin Rash">Skin Rash</option>
@@ -544,6 +541,12 @@
 
 		</div>
 	</main>
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+		}
+	  </script>
+	  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>
