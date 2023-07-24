@@ -30,17 +30,18 @@ body {
   }
 
   
-.sidebar {
+  .sidebar {
     width: 16.75rem;
-    background: var(--darkblue);
-    padding: 1.563rem;
-    margin-top: 2.5rem;
-    height: 100%;
-    position: relative;
-    transition: 1s ease-in-out;
-    float: left;
-    box-shadow: var(--shadow);
-  }
+      background: var(--darkblue);
+      padding: 1.563rem;
+      margin-top: 2.5rem;
+      height: 100%;
+      position: relative;
+      transition: 1s ease-in-out;
+      float: left;
+      box-shadow: var(--shadow);
+    }
+  
 
 
 
@@ -49,7 +50,7 @@ body {
   width: 88.44rem;
   float: left;
   padding: 1.563rem;
-margin-top: -4%;
+  margin-top: -4%;
 }
 .logo span {
     font-size: 2rem;
