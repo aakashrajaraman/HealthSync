@@ -8,7 +8,7 @@ import os
 from google.cloud import storage
 from itertools import chain
 import torch
-import PyPDF2
+
 
 os.environ['USE_TORCH'] = '1'
 
@@ -237,12 +237,12 @@ def ocr():
     synthetic_pages = result.synthesize() #synthesized image output
     extracted_text = result.export()
 
-    extracted_words = {}
+    extracted_words=[]
     for page_info in extracted_text['pages']:
         for block in page_info['blocks']:
             for line in block['lines']:
                 for word in line['words']:
-                    extracted_words[word['value']] = word['confidence']
+                    extracted_words.append(word['value'])
 
     blob.metadata = {'metadata': extracted_words}
 
