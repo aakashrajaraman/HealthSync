@@ -57,11 +57,15 @@
           <p>
             User Bio: {{patient_data.user_bio}}
           </p>
+          <br>
+          <h2>Your Documents on Record:</h2>
           
-      
+        {%for doc in toBeRendered%}
+         <a href = "{{doc['pdf_link']}}">{{doc['pdf_name']}} &nbsp; &nbsp; &nbsp;&nbsp; Notes: {{doc['metadata']}}</a></li>
+        
+        {%endfor%}
         </div>
       
-       
       </aside>
     
 </body>

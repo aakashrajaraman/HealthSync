@@ -15,18 +15,18 @@ import numpy as np
 app = Flask(__name__)
 
 # Load the rf model using pickle
-with open("final_rf_model.pkl", "rb") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\final_rf_model.pkl", "rb") as file:
     loaded_rf_model = pickle.load(file)
 
 # Load the specialized_dict from JSON
-with open("disease_specialist_dict.json", "r") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\disease_specialist_dict.json", "r") as file:
     loaded_specialized_dict = json.load(file)
 
 # Load the prediction_encoder classes from JSON
-with open("encoder_data.json", "r") as file:
+with open("D:\Backup\Desktop\programs\HealthSync\encoder_data.json", "r") as file:
     encoder_data = json.load(file)
 
-with open("X.pkl", "rb") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\X.pkl", "rb") as file:
     X = pickle.load(file)
 
 symptoms = X.columns.values
@@ -366,8 +366,23 @@ def profile():
             'bio': bio,
             'gender': gender
         }
+        username = session['username']
+        bucket = client.get_bucket(bucket_path)
+        blobs = bucket.list_blobs(prefix=username+'/') 
+        prefixes = set()
+        toBeRendered =[]
 
-        return render_template('profile.html', patient_data = patient_data)
+        for blob in chain(*blobs.pages):
+            prefixes.add(blob.name.split('/')[0])
+            if blob.name.endswith('.pdf'):
+                pdf_name = blob.name
+                pdf_link = f"https://storage.googleapis.com/{bucket_path}/{blob.name}"
+                metadata = blob.metadata
+                tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link, 'metadata': metadata}
+                toBeRendered.append(tbu)
+        
+
+        return render_template('profile.html', patient_data = patient_data, toBeRendered = toBeRendered)
 
 @app.route('/showDocs', methods = ['POST', 'GET'])
 def showDocs():
