@@ -18,25 +18,25 @@ os.environ['USE_TORCH'] = '1'
 from doctr.io import DocumentFile
 from doctr.models import ocr_predictor
 import io 
-predictor = torch.load(r"D:\Backup\Desktop\programs\HealthSync\text_extraction_model.pth")
+predictor = torch.load(r"text_extraction_model.pth")
 clinic_data = {}
 global userType
 apps = []
 app = Flask(__name__)
 
 # Load the rf model using pickle
-with open(r"D:\Backup\Desktop\programs\HealthSync\final_rf_model.pkl", "rb") as file:
+with open(r"final_rf_model.pkl", "rb") as file:
     loaded_rf_model = pickle.load(file)
 
 # Load the specialized_dict from JSON
-with open(r"D:\Backup\Desktop\programs\HealthSync\disease_specialist_dict.json", "r") as file:
+with open(r"disease_specialist_dict.json", "r") as file:
     loaded_specialized_dict = json.load(file)
 
 # Load the prediction_encoder classes from JSON
-with open("D:\Backup\Desktop\programs\HealthSync\encoder_data.json", "r") as file:
+with open("encoder_data.json", "r") as file:
     encoder_data = json.load(file)
 
-with open(r"D:\Backup\Desktop\programs\HealthSync\X.pkl", "rb") as file:
+with open(r"X.pkl", "rb") as file:
     X = pickle.load(file)
 
 symptoms = X.columns.values
@@ -122,8 +122,9 @@ def login():
                             session['user_bio'] = user_data['user_bio']
                             session['gender'] = user_data['gender']
                             session['user_email'] = user_data['user_email']
+                            user_bio = user_data['user_bio']
 
-                            return render_template('patient_dashboard.html', name = name, age = years, gender = gender)
+                            return render_template('patient_dashboard.html', name = name, age = years, gender = gender, user_bio = user_data['user_bio'])
                         elif userType == 'clinic':
                             #get info of clinic to render on page
                             name = user_data['name']
@@ -189,9 +190,10 @@ def userRedir():
 @app.route('/patientRedir', methods =['POST', 'GET'])
 def patientRedir():
     name = session['name']
+    user_bio = session['user_bio']
     age = current_date-datetime.datetime.strptime(session['date'], '%m%d%Y').date()
     years = age.days//365
-    return render_template('patient_dashboard.html', name = name, age = years)
+    return render_template('patient_dashboard.html', name = name, age = years, user_bio = user_bio)
 
 @app.route('/clinicRedir', methods =['POST', 'GET'])
 def clinicRedir():
@@ -255,10 +257,10 @@ def userSignUp():
     if len(list(query)) > 0 :
         flash('Aadhaar already exists')
         return redirect(url_for('userRedir'))
-
-
-
-
+    foldername= username
+    bucket = client.get_bucket(bucket_path)
+    blob = bucket.blob(foldername+'/')
+    blob.upload_from_string('')
     patient_data = {
         'name': name,
         'username': username,
@@ -275,10 +277,7 @@ def userSignUp():
     }
     firestoreDB.collection('patients').add(patient_data)
 
-    foldername= username
-    bucket = client.get_bucket(bucket_path)
-    blob = bucket.blob(foldername+'/')
-    blob.upload_from_string('')
+    
 
 
 
