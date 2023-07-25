@@ -36,7 +36,7 @@ a {
 	  height: 100%;
 	  position: relative;
 	  transition: 1s ease-in-out;
-	  float: left;
+	  position: fixed;
 	  font-weight: 100;
 	  box-shadow: var(--shadow);
 	}
@@ -241,7 +241,7 @@ a {
         animation: moveIn 1s 3.1s ease forwards;
       }
       
-      
+     
       @-webkit-keyframes init {
         0% {
           width: 0px;

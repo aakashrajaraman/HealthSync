@@ -110,7 +110,7 @@
 				<p class="box-content-header">{{appointment.department}}</p>
 			  </div>
 			  <div class="box-progress-wrapper">
-				<p class="box-progress-header">Patient: {{appointment.patient_name}}</p><br>
+				<p class="box-progress-header"><a href = "{{url_for('profile', p_username = appointment.p_username)}}">Patient: {{appointment.patient_name}}</a></p>
 				<p class="box-progress-header">Age: {{appointment.patient_age}} </p><br>
 				<p class="box-progress-header">Reason: {{appointment.reason}} </p><br>
 			  </div>

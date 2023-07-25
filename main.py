@@ -12,7 +12,7 @@ import pickle
 import json
 import numpy as np
 import torch
-import PyPDF2
+
 os.environ['USE_TORCH'] = '1'
 
 from doctr.io import DocumentFile
@@ -106,7 +106,7 @@ def login():
                         if userType == 'patient':
                             session['date'] = user_data['date']
                         session['user_id'] = doc.id
-                        session['user_email'] = user_data['user_email']
+                        
                         
                        
 
@@ -122,7 +122,7 @@ def login():
                             session['address'] = user_data['address']
                             session['user_bio'] = user_data['user_bio']
                             session['gender'] = user_data['gender']
-
+                            session['user_email'] = user_data['user_email']
 
                             return render_template('patient_dashboard.html', name = name, age = years, gender = gender)
                         elif userType == 'clinic':
@@ -137,6 +137,7 @@ def login():
 
                             appointmentsDB = firestoreDB.collection('appointments')
                             appointments = appointmentsDB.where('clinic', '==', username).stream()
+                            global apps
                             apps = []
                             for doc in appointments:
                                 app_data = doc.to_dict()
@@ -153,11 +154,11 @@ def login():
                                             app_data['patient_name'] = patient_doc[0].to_dict().get('name')
                                             days= current_date-datetime.datetime.strptime(patient_doc[0].to_dict().get('date'), '%m%d%Y').date()
                                             years = days.days//365
-                                            
+                                            app_data['p_username']= patient_doc[0].to_dict().get('username')
                                             app_data['patient_age'] = years
                                     apps.append(app_data)
                                 
-
+                            global clinic_data
                             clinic_data = {
                                 "name": name,
                                 "doctors": doctors,
@@ -167,9 +168,6 @@ def login():
                             }
                             
                             
-
-                            
-
                             return render_template('clinic_dashboard.html', clinic_data = clinic_data, appointments = apps)
                     else:#wrong password
                         return render_template('login.html')
@@ -179,7 +177,7 @@ def login():
 #create route for protected 
 @app.route('/logout')
 def logout():
-    session.pop('user_id', None)
+    session.clear()
     return render_template('login.html')
 
 
@@ -205,7 +203,10 @@ def clinicRedir():
                    'Rheumatology', 'Otolaryngology', 'Urology']
     
     return render_template('clinicSignUp.html', specialties = specialties)
-
+@app.route('/dashRedir', methods =['POST', 'GET'])
+def dashRedir():
+    print("here")
+    return render_template('clinic_dashboard.html', clinic_data = clinic_data, appointments = apps)
 @app.route('/uploadRedir', methods =['POST', 'GET'])
 def uploadRedir():
     return render_template('upload.html')
@@ -218,7 +219,6 @@ def recRedir():
 
 @app.route('/userSignUp', methods =['POST'])
 def userSignUp():
-    print('usershere')
     name = request.form['name']
     username = request.form['username']
     user_email = request.form['user_email']
@@ -339,7 +339,7 @@ def upload():
     name = request.form['name']
     bucket = client.get_bucket(bucket_path)
     path = session['username']+'/'+name+'.pdf'
-    print(path)
+    
     blob = bucket.blob(path)
     
     
@@ -389,9 +389,48 @@ def profile():
                 metadata = blob.metadata
                 tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link, 'metadata': metadata}
                 toBeRendered.append(tbu)
-        
-
         return render_template('profile.html', patient_data = patient_data, toBeRendered = toBeRendered)
+   
+   
+    if session['userType'] == 'clinic':
+        username = request.args.get('p_username')
+        
+        patient_doc = firestoreDB.collection('patients').where('username', '==', username).limit(1).stream()
+        #get name, email, phone, age in years, address, bio, gender
+        patient_doc = list(patient_doc)
+        if patient_doc:
+            name = patient_doc[0].to_dict().get('name')
+            email = patient_doc[0].to_dict().get('user_email')
+            phone = patient_doc[0].to_dict().get('phone')
+            age = current_date-datetime.datetime.strptime(patient_doc[0].to_dict().get('date'), '%m%d%Y').date()
+            years = age.days//365
+            address = patient_doc[0].to_dict().get('address')
+            bio = patient_doc[0].to_dict().get('user_bio')
+            gender = patient_doc[0].to_dict().get('gender')
+        patient_data = {
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'age': years,
+            'address': address,
+            'bio': bio,
+            'gender': gender
+        }
+        bucket = client.get_bucket(bucket_path)
+        blobs = bucket.list_blobs(prefix=username+'/') 
+        prefixes = set()
+        toBeRendered =[]
+
+        for blob in chain(*blobs.pages):
+            prefixes.add(blob.name.split('/')[0])
+            if blob.name.endswith('.pdf'):
+                pdf_name = blob.name
+                pdf_name = pdf_name.split('/')[1]
+                pdf_link = f"https://storage.googleapis.com/{bucket_path}/{blob.name}"
+                metadata = blob.metadata
+                tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link, 'metadata': metadata}
+                toBeRendered.append(tbu)
+        return render_template('viewProfileClinic.html', patient_data = patient_data, toBeRendered = toBeRendered)
 
 @app.route('/showDocs', methods = ['POST', 'GET'])
 def showDocs():

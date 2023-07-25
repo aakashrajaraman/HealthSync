@@ -7,28 +7,27 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+	<div class="sidebar">
 
-<div class="sidebar">
-  
-	<h1 class="logo" align ="center">H<span>ealth</span>S<span>ync</span></h1>
+		<h1 class="logo" align="center">H<span>ealth</span>S<span>ync</span></h1>
 	
-	<ul class="sidenav">
-		<li class="active"><i class="fa fa-home"></i><a href="{{url_for('patientRedir')}}"> Dashboard
-			<span class="span1"><i class="fa fa-angle-right"></i></span>			
-		</a>	
-		</li>
-		<li><i class="fa fa-file"></i><a href="#"> Profile</a></li>
-    <li><i class="fa fa-file"></i><a href="{{url_for('showDocs')}}"> View Documents</a></li>
-		<li><i class="fa fa-calendar"></i><a href="{{url_for('uploadRedir')}}"> Upload Documents</a></li>
-		<li><i class="fa fa-clone"></i><a href="{{url_for('recRedir')}}"> Recommendations</a></li>
-		<li><i class="fa fa-file-text"></i><a href="{{url_for('logout')}}"> Log out</a></li>
-		<br><br><br><br><br><br><br>
-    	<li><i class="fa fa-file-text"></i><a href="#"> Translate</a></li>    
-    	<li id="google_translate_element"></li>
-
-		
-	</ul>
-</div>
+		<ul class="sidenav">
+		  <li class="active"><i class="fa fa-home"></i><a href="{{url_for('patientRedir')}}"> Dashboard
+			  <span class="span1"><i class="fa fa-angle-right"></i></span>
+			</a>
+		  </li>
+		  <li><i class="fa fa-file"></i><a href="{{url_for('profile')}}"> Profile</a></li>
+		  <li><i class="fa fa-file"></i><a href="{{url_for('showDocs')}}"> View Documents</a></li>
+		  <li><i class="fa fa-calendar"></i><a href="{{url_for('uploadRedir')}}"> Upload Documents</a></li>
+		  <li><i class="fa fa-clone"></i><a href="{{url_for('recRedir')}}"> Recommendations</a></li>
+		  <li><i class="fa fa-file-text"></i><a href="{{url_for('logout')}}"> Log out</a></li>
+		  <br><br><br><br><br><br><br>
+		  <li><i class="fa fa-file-text"></i><a href="#"> Translate</a></li>
+		  <li id="google_translate_element"></li>
+	
+	
+		</ul>
+	  </div>
 
 <div class="main">
 	<br><br>

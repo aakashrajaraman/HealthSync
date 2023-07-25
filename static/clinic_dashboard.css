@@ -55,6 +55,8 @@
 }
  button, a {
 	 cursor: pointer;
+	 text-decoration: none;
+	 color: var(--main-color)
 }
  .app-container {
 	 width: 100%;
