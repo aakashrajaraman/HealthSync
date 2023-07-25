@@ -59,10 +59,11 @@
           </p>
           <br>
           <h2>Your Documents on Record:</h2>
-          
+          <br>
         {%for doc in toBeRendered%}
-         <a href = "{{doc['pdf_link']}}">{{doc['pdf_name']}} &nbsp; &nbsp; &nbsp;&nbsp; Notes: {{doc['metadata']}}</a></li>
-        
+        <a href="{{ doc['pdf_link'] }}">{{ doc['pdf_name'] }} </a>
+			
+			  <p style="font-size: 0.9em;">{{ doc['metadata'] }}</p>
         {%endfor%}
         </div>
       

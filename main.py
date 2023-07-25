@@ -11,6 +11,14 @@ import re
 import pickle
 import json
 import numpy as np
+import torch
+import PyPDF2
+os.environ['USE_TORCH'] = '1'
+
+from doctr.io import DocumentFile
+from doctr.models import ocr_predictor
+import io 
+predictor = torch.load(r"D:\Backup\Desktop\programs\HealthSync\text_extraction_model.pth")
 
 app = Flask(__name__)
 
@@ -376,6 +384,7 @@ def profile():
             prefixes.add(blob.name.split('/')[0])
             if blob.name.endswith('.pdf'):
                 pdf_name = blob.name
+                pdf_name = pdf_name.split('/')[1]
                 pdf_link = f"https://storage.googleapis.com/{bucket_path}/{blob.name}"
                 metadata = blob.metadata
                 tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link, 'metadata': metadata}
@@ -400,7 +409,7 @@ def showDocs():
             metadata = blob.metadata
             #only get pdfname from '/' onwards
             pdf_name = pdf_name.split('/')[1]
-            
+
             tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link, 'metadata': metadata}
             toBeRendered.append(tbu)
         
@@ -454,7 +463,42 @@ def reccomender():
 
     return render_template("recommender_html.html")
 
+@app.route('/ocr', methods = ['POST'])
+def ocr():
+    pdf = request.files['file']
+    name = request.form['name']
 
+    bucket = client.get_bucket(bucket_path)
+    path = session['username']+'/'+name+'.pdf'
+    
+    blob = bucket.blob(path)
+
+    blob.content_disposition = 'inline'
+     
+    temp_filename = 'temp.pdf'
+    pdf.save(temp_filename)
+
+    doc = DocumentFile.from_pdf(temp_filename)
+    result = predictor(doc)
+    synthetic_pages = result.synthesize() #synthesized image output
+    extracted_text = result.export()
+
+    extracted_words = {}
+    for page_info in extracted_text['pages']:
+        for block in page_info['blocks']:
+            for line in block['lines']:
+                for word in line['words']:
+                    extracted_words[word['value']] = word['confidence']
+
+    blob.metadata = {'metadata': extracted_words}
+
+    with open(temp_filename, 'rb') as file:
+        blob.upload_from_file(file)
+
+    os.remove(temp_filename)
+
+    return render_template('ocr.html')
+    
 @app.route('/book-appointment', methods = ['POST', 'GET'])
 def bookAppointment():
     clinic_username = request.form['clinic_username']
