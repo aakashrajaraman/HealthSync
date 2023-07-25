@@ -8,6 +8,7 @@ import os
 from google.cloud import storage
 from itertools import chain
 import torch
+import PyPDF2
 
 os.environ['USE_TORCH'] = '1'
 
@@ -85,7 +86,6 @@ def login():
 def logout():
     session.pop('user_id', None)
     return render_template('login.html')
-
 
 
 
@@ -203,16 +203,56 @@ def upload():
 
     blob.upload_from_file(pdf)  
 
-    doc = DocumentFile.from_pdf(io.BytesIO(pdf.read()))
-    result = predictor(doc)
-    synthetic_pages = result.synthesize() #synthesized image output
-    extracted_text = result.export() #json format outpu
+    
+    # try:
+    #     doc = DocumentFile.from_pdf(pdf)
+    # except Exception as e:
+    #     print("Error during DocumentFile.from_pdf():", e)
+    #     raise TypeError("unsupported object type for argument 'file'")
+
+    # result = predictor(doc)
+    # synthetic_pages = result.synthesize() #synthesized image output
+    # extracted_text = result.export() #json format output
 
 
     return render_template('patient_dashboard.html')
 
+@app.route('/ocr', methods = ['POST'])
+def ocr():
+    pdf = request.files['file']
+    name = request.form['name']
 
+    bucket = client.get_bucket(bucket_path)
+    path = session['username']+'/'+name+'.pdf'
+    
+    blob = bucket.blob(path)
 
+    blob.content_disposition = 'inline'
+     
+    temp_filename = 'temp.pdf'
+    pdf.save(temp_filename)
+
+    doc = DocumentFile.from_pdf(temp_filename)
+    result = predictor(doc)
+    synthetic_pages = result.synthesize() #synthesized image output
+    extracted_text = result.export()
+
+    extracted_words = {}
+    for page_info in extracted_text['pages']:
+        for block in page_info['blocks']:
+            for line in block['lines']:
+                for word in line['words']:
+                    extracted_words[word['value']] = word['confidence']
+
+    blob.metadata = {'metadata': extracted_words}
+
+    with open(temp_filename, 'rb') as file:
+        blob.upload_from_file(file)
+
+    os.remove(temp_filename)
+
+    return render_template('ocr.html')
+    
 
 @app.route('/showDocs', methods = ['POST', 'GET'])
 def showDocs():
@@ -235,3 +275,5 @@ def showDocs():
 
 if __name__ == '__main__':
     app.run(port=3000, debug=True)
+
+
