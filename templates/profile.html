@@ -7,76 +7,86 @@
   <title>Profile</title>
   <link rel="stylesheet" href="{{url_for('static',filename='/profile.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-
-  
-
-<div class="main">
-  <aside class="profile-card">
-    <header>
-
-      <!-- the username -->
-      <h1>{{patient_data.name}}</h1>
-
-      <h2> Age: {{patient_data.age}}</h2>
-      <h2> Gender: {{patient_data.gender}}</h2>
-
-    </header>
-
-    <div class="profile-bio">
-
-      <p>
-        Address: {{patient_data.address}}
-      </p>
-      <p>
-        Email: {{patient_data.email}}
-      </p>
-
-      <p>
-        Phone: {{patient_data.phone}}
-      </p>
-      <p>
-        User Bio: {{patient_data.user_bio}}
-      </p>
-      <br>
-      <h2>Your Documents on Record:</h2>
-      <br>
-      {%for doc in toBeRendered%}
-      <a href="{{ doc['pdf_link'] }}">{{ doc['pdf_name'] }} </a>
-
-      <p style="font-size: 0.9em;">{{ doc['metadata'] }}</p>
-      {%endfor%}
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <div class="wrapper">
+    <div class="left">
+      <img src="https://i.imgur.com/cMy8V5j.png" alt="user" width="100">
+      <h4>{{patient_data.name}}</h4>
+      <p> <span>Age:</span> {{patient_data.age}}</p>
+      <p><span>Gender:</span> {{patient_data.gender}}</p>
+      <p><span>Address:</span> {{patient_data.address}}</p>
     </div>
+    <div class="right">
+      <div class="info">
+        <h3>Information</h3>
+        <div class="info_data">
+          <div class="data">
+            <h4>Email</h4>
+            <p>{{patient_data.email}}</p>
+          </div>
+          <div class="data">
+            <h4>Phone</h4>
+            <p>{{patient_data.phone}}</p>
+          </div>
+        </div>
+      </div>
 
-  </aside>
-</div>
+      <div class="projects">
+        <h3>Medical Info</h3>
+        <div class="projects_data">
+          <div class="data">
+            <h4>User Bio: {{patient_data.user_bio}}</h4>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </div>
+        </div>
+        <br>
+        <h3>Documents on Record:</h3>
+        <div class="projects_data">
+          <div class="data">
+
+            <br>
+            {%for doc in toBeRendered%}
+            <a href="{{ doc['pdf_link'] }}">{{ doc['pdf_name'] }} </a>
+
+            <p style="font-size: 0.9em;">{{ doc['metadata'] }}</p>
+            {%endfor%}
+          </div>
+        </div>
+      </div>
+
+      <div class="social_media">
+
+      </div>
+    </div>
+  </div>
 
 
-<div class="sidebar">
+  <div class="sidebar">
 
-  <h1 class="logo" align="center">H<span>ealth</span>S<span>ync</span></h1>
+    <h1 class="logo" align="center">H<span>ealth</span>S<span>ync</span></h1>
 
-  <ul class="sidenav">
-    <li class="active"><i class="fa fa-home"></i><a href="{{url_for('patientRedir')}}"> Dashboard
-        <span class="span1"><i class="fa fa-angle-right"></i></span>
-      </a>
-    </li>
-    <li><i class="fa fa-file"></i><a href="#"> Profile</a></li>
-    <li><i class="fa fa-file"></i><a href="{{url_for('showDocs')}}"> View Documents</a></li>
-    <li><i class="fa fa-calendar"></i><a href="{{url_for('uploadRedir')}}"> Upload Documents</a></li>
-    <li><i class="fa fa-clone"></i><a href="{{url_for('recRedir')}}"> Recommendations</a></li>
-    <li><i class="fa fa-file-text"></i><a href="{{url_for('logout')}}"> Log out</a></li>
-    <br><br><br><br><br><br><br>
-    <li><i class="fa fa-file-text"></i><a href="#"> Translate</a></li>
-    <li id="google_translate_element"></li>
+    <ul class="sidenav">
+      <li class="active"><i class="fa fa-home"></i><a href="{{url_for('patientRedir')}}"> Dashboard
+          <span class="span1"><i class="fa fa-angle-right"></i></span>
+        </a>
+      </li>
+      <li><i class="fa fa-file"></i><a href="#"> Profile</a></li>
+      <li><i class="fa fa-file"></i><a href="{{url_for('showDocs')}}"> View Documents</a></li>
+      <li><i class="fa fa-calendar"></i><a href="{{url_for('uploadRedir')}}"> Upload Documents</a></li>
+      <li><i class="fa fa-clone"></i><a href="{{url_for('recRedir')}}"> Recommendations</a></li>
+      <li><i class="fa fa-file-text"></i><a href="{{url_for('logout')}}"> Log out</a></li>
+      <br><br><br><br><br><br><br>
+      <li><i class="fa fa-file-text"></i><a href="#"> Translate</a></li>
+      <li id="google_translate_element"></li>
 
 
-  </ul>
-</div>
+    </ul>
+  </div>
 </body>
 
 </html>

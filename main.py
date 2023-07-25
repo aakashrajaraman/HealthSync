@@ -19,7 +19,9 @@ from doctr.io import DocumentFile
 from doctr.models import ocr_predictor
 import io 
 predictor = torch.load(r"D:\Backup\Desktop\programs\HealthSync\text_extraction_model.pth")
-
+clinic_data = {}
+global userType
+apps = []
 app = Flask(__name__)
 
 # Load the rf model using pickle
@@ -86,7 +88,7 @@ def index():
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST' and 'id' in request.form and 'password' in request.form and 'userType' in request.form:
-        global userType
+        
         id = request.form['id']
         password = request.form['password']
         userType = request.form['userType']
@@ -106,10 +108,7 @@ def login():
                         if userType == 'patient':
                             session['date'] = user_data['date']
                         session['user_id'] = doc.id
-                        
-                        
-                       
-
+        
                         if userType == 'patient':
                             #get info of patient to render on page
                             name = user_data['name']
@@ -137,8 +136,8 @@ def login():
 
                             appointmentsDB = firestoreDB.collection('appointments')
                             appointments = appointmentsDB.where('clinic', '==', username).stream()
-                            global apps
-                            apps = []
+                            
+                            
                             for doc in appointments:
                                 app_data = doc.to_dict()
                                 app_date = app_data.get('time')
@@ -158,7 +157,7 @@ def login():
                                             app_data['patient_age'] = years
                                     apps.append(app_data)
                                 
-                            global clinic_data
+                            session['apps'] = apps
                             clinic_data = {
                                 "name": name,
                                 "doctors": doctors,
@@ -166,7 +165,7 @@ def login():
                                 "upcoming_patients": int(upcoming_patients),
                                 "current_date": current_date.strftime("%d-%m-%Y"),
                             }
-                            
+                            session['clinic_data'] = clinic_data
                             
                             return render_template('clinic_dashboard.html', clinic_data = clinic_data, appointments = apps)
                     else:#wrong password
@@ -205,7 +204,8 @@ def clinicRedir():
     return render_template('clinicSignUp.html', specialties = specialties)
 @app.route('/dashRedir', methods =['POST', 'GET'])
 def dashRedir():
-    print("here")
+    clinic_data = session['clinic_data']
+    apps = session['apps']
     return render_template('clinic_dashboard.html', clinic_data = clinic_data, appointments = apps)
 @app.route('/uploadRedir', methods =['POST', 'GET'])
 def uploadRedir():
@@ -387,6 +387,13 @@ def profile():
                 pdf_name = pdf_name.split('/')[1]
                 pdf_link = f"https://storage.googleapis.com/{bucket_path}/{blob.name}"
                 metadata = blob.metadata
+                #remove brackets and the word metadata from metadata
+                metadata = str(metadata)
+                metadata = metadata.replace('metadata', '')
+                metadata = metadata.replace('{', '')
+                metadata = metadata.replace('}', '')
+                metadata = metadata.replace("'", '')
+                metadata = metadata.replace(':', '')
                 tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link, 'metadata': metadata}
                 toBeRendered.append(tbu)
         return render_template('profile.html', patient_data = patient_data, toBeRendered = toBeRendered)

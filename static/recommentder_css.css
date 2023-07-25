@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 * {
 	border: 0;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
+
 :root {
 	--darkblue: #ffffff;
 	--lightblue: #ffffff;
@@ -15,107 +17,117 @@
 	--font-light: #878aa7;
 	--white: #fff;
 	--shadow: 0 0 0.375rem 0.25rem rgba(168, 200, 206, 0.907);
-  }
+}
+
 :root {
 	--hue: 223;
 	--bg: #ffff;
-	--fg: hsl(var(--hue),10%,10%);
-	--primary: hsl(var(--hue),90%,50%);
+	--fg: hsl(var(--hue), 10%, 10%);
+	--primary: hsl(var(--hue), 90%, 50%);
 	--trans-dur: 0.3s;
 	font-size: calc(16px + (24 - 16) * (100vw - 320px) / (2560 - 320));
 }
+
 a {
-	color: hsl(var(--hue),90%,50%);
+	color: hsl(var(--hue), 90%, 50%);
 	transition: color var(--trans-dur);
 }
-  
+
 .sidebar {
 	width: 14.75rem;
-	  background: var(--darkblue);
-	  padding: 1.563rem;
-	  height: 100%;
-	  position: relative;
-	  transition: 1s ease-in-out;
-	  float: left;
-	  font-weight: 100;
-	  box-shadow: var(--shadow);
-	}
-	
-
-	.logo span {
-		font-size: 2rem;
-		color: var(--font-light);
-		font-weight: normal;
-	  }
-	  .logo {
-		color: var(--blue);
-		font-weight: bold;
-		font-size: 2rem;
-	  }
+	background: var(--darkblue);
+	padding: 1.563rem;
+	height: 100%;
+	position: relative;
+	transition: 1s ease-in-out;
+	float: left;
+	font-weight: 100;
+	box-shadow: var(--shadow);
+}
 
 
-	.sidenav {
-		margin-top: 1.25rem;
-	  }
-	  .sidenav li {
-		list-style: none;
-		padding: 0.75rem 0.625rem;
-		border-radius: 0.625rem;
-		margin-bottom: 0.625rem;
-		font-size: 0.738rem;
-		font-family: 'Montserrat';
-		font-weight: bold;
-		
-	  }
-	  
-	  .sidenav li:hover {
-		background-color: rgba(29, 20, 156, 0.06);
-	  }
-	  .sidenav li i {
-		color: var(--font-color);
-		padding-right: 0.438rem;
-	  }
-	  
-	  .sidenav li a {
-		text-decoration: none;
-		color: var(--font-color);
-	  }
-	  .active {
-		background: var(--blue) !important;
-		position: relative;
-	  }
-	  .sidenav li span {
-		float: right;
-	  }
-	  
-	  .sidenav .active a {
-		color: var(--white) !important;
-	  }
-	  
-	  .sidenav .active i {
-		color: var(--white) !important;
-	  }
-	  .active:after {
-		content: "";
-		position: absolute;
-		right: -1.5rem;
-		width: 0.25rem;
-		height: 2.5rem;
-		top: 2px;
-		background: var(--blue);
-		border-radius: 0.375rem 0 0 0.375rem;
-	  }
-  
+.logo span {
+	font-size: 2rem;
+	color: var(--font-light);
+	font-weight: normal;
+}
+
+.logo {
+	color: var(--blue);
+	font-weight: bold;
+	font-size: 2rem;
+}
+
+
+.sidenav {
+	margin-top: 1.25rem;
+}
+
+.sidenav li {
+	list-style: none;
+	padding: 0.75rem 0.625rem;
+	border-radius: 0.625rem;
+	margin-bottom: 0.625rem;
+	font-size: 0.738rem;
+	font-family: 'Montserrat';
+	font-weight: bold;
+
+}
+
+.sidenav li:hover {
+	background-color: rgba(29, 20, 156, 0.06);
+}
+
+.sidenav li i {
+	color: var(--font-color);
+	padding-right: 0.438rem;
+}
+
+.sidenav li a {
+	text-decoration: none;
+	color: var(--font-color);
+}
+
+.active {
+	background: var(--blue) !important;
+	position: relative;
+}
+
+.sidenav li span {
+	float: right;
+}
+
+.sidenav .active a {
+	color: var(--white) !important;
+}
+
+.sidenav .active i {
+	color: var(--white) !important;
+}
+
+.active:after {
+	content: "";
+	position: absolute;
+	right: -1.5rem;
+	width: 0.25rem;
+	height: 2.5rem;
+	top: 2px;
+	background: var(--blue);
+	border-radius: 0.375rem 0 0 0.375rem;
+}
+
 a:focus-visible,
 a:hover {
 	text-decoration: none;
 }
+
 body,
 button,
 input {
 	color: var(--fg);
 	font: 1em/1.5 Nunito, sans-serif;
 }
+
 body {
 	background-color: var(--bg);
 	display: flex;
@@ -130,22 +142,25 @@ h1 {
 	font-size: 2em;
 	margin: 0 0 0.75rem;
 }
+
 p {
-	color: hsl(var(--hue),10%,30%);
+	color: hsl(var(--hue), 10%, 30%);
 	margin: 0 0 1.5em;
 	transition: color var(--trans-dur);
 }
+
 .login,
 .login__col {
 	display: flex;
-	
+
 
 }
 
 .login__col {
 	width: 99%;
 	height: 100%;
-	border: 2px solid rgb(37, 170, 185); /* Add a blue border */
+	border: 2px solid rgb(37, 170, 185);
+	/* Add a blue border */
 	border-radius: 35px;
 	margin-top: 3px;
 	margin-left: 1px;
@@ -153,24 +168,28 @@ p {
 	margin-bottom: 10px;
 	padding: 10px;
 	background-color: #f5fcff;
-	
-	
+
+
 
 }
 
 .logina__col {
 	width: 99%;
 	height: 100%;
-	border: 2px solid rgb(37, 170, 185); /* Add a blue border */
+	border: 2px solid rgb(37, 170, 185);
+	/* Add a blue border */
 	border-radius: 35px;
 	margin-top: 3px;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	padding: 10px;
-	background-color: rgba(71, 50, 29, 0.5); /* Use rgba to set a transparent background color */
-	box-shadow: 0 0 10px rgba(11, 68, 167, 0.5); /* Adjust the box shadow as needed */
-	background-image: url("logo1.jpg"); /* Replace "path/to/your/image.jpg" with the actual path to your image */
+	background-color: rgba(71, 50, 29, 0.5);
+	/* Use rgba to set a transparent background color */
+	box-shadow: 0 0 10px rgba(11, 68, 167, 0.5);
+	/* Adjust the box shadow as needed */
+	background-image: url("logo1.jpg");
+	/* Replace "path/to/your/image.jpg" with the actual path to your image */
 	background-size: cover;
 	opacity: 0.85;
 }
@@ -191,39 +210,42 @@ p {
 	cursor: not-allowed;
 	opacity: 0.5;
 }
+
 .login__btn:not(:disabled):focus-visible,
 .login__btn:not(:disabled):hover {
 	background-color: #2bc2cd;
 }
 
 .login__btn {
-		display: block;
-		margin: 0 auto;
-		width: 200px; /* Adjust the width as needed */
-		padding: 10px;
-		background-color: #2bc2cd;
-		color: white;
-		font-weight: bold;
-		border: none;
-		border-radius: 25px;
-		text-align: center;
-		cursor: pointer;
-		transition: background-color 0.3s ease;
+	display: block;
+	margin: 0 auto;
+	width: 200px;
+	/* Adjust the width as needed */
+	padding: 10px;
+	background-color: #2bc2cd;
+	color: white;
+	font-weight: bold;
+	border: none;
+	border-radius: 25px;
+	text-align: center;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
-	
+
 .login__btn:hover {
-		background-color: #0b44a7; /* Change the background color on hover */
+	background-color: #0b44a7;
+	/* Change the background color on hover */
 }
-	
+
 
 .login__btn[data-login="true"] {
 	display: block;
 }
 
 .login__field {
-	background-color: hsla(var(--hue),90%,50%,0);
+	background-color: hsla(var(--hue), 90%, 50%, 0);
 	border-radius: 0.3em;
-	box-shadow: 0 0 0 1px hsl(var(--hue),10%,70%) inset;
+	box-shadow: 0 0 0 1px hsl(var(--hue), 10%, 70%) inset;
 	outline: transparent;
 	transition:
 		background-color var(--trans-dur),
@@ -237,49 +259,58 @@ p {
 	overflow-y: auto;
 
 }
+
 .login__field {
 	padding: 0.5em 0.75em;
 	width: 100%;
 	height: 2.5em;
 }
+
 .login__field-group {
 	margin-bottom: 0.75em;
 }
+
 .login__field-group--horz {
 	display: flex;
 	justify-content: space-between;
 }
+
 .login__form,
 .login__form-wrapper {
 	margin: auto;
 	margin-top: 8%;
 }
+
 .login__form {
 	padding: 0 1.5em;
 	width: 100%;
 }
+
 .login__form-wrapper {
-	
+
 	font-family: 'Montserrat';
 }
-.login__form-wrapper h1{
-	
+
+.login__form-wrapper h1 {
+
 	font-family: 'Montserrat';
 	color: #fff;
 }
+
 .login__label {
 	display: block;
 	font-weight: bold;
-	
+
 }
+
 .login__label--horz {
 	font-weight: normal;
 	display: flex;
 	align-items: center;
 }
+
 .login__label,
-.login__label + a
- {
+.login__label+a {
 	color: #000;
 	font-size: 1em;
 	line-height: 2;
@@ -290,19 +321,21 @@ p {
 
 /* Mobile */
 @media (max-width: 767px) {
-	.login__col + .login__col {
+	.login__col+.login__col {
 		display: none;
 	}
 }
 
 /* Animations */
 @keyframes spinner {
+
 	from,
 	to {
-		background-color: hsla(0,0%,100%,1);
+		background-color: hsla(0, 0%, 100%, 1);
 	}
+
 	50% {
-		background-color: hsla(0,0%,100%,0);
+		background-color: hsla(0, 0%, 100%, 0);
 	}
 }
 
@@ -310,44 +343,46 @@ p {
 
 
 .dropdown-wrapper {
-    position: relative;
+	position: relative;
 }
 
 .dropdown {
-    appearance: none;
-    -webkit-appearance: none;
-	
-    height: 48px;
-    -moz-appearance: none;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #110f0f;
-    border-radius: 4px;
-    background-color: #ffffff;
-    color: #00000088;
+	appearance: none;
+	-webkit-appearance: none;
+
+	height: 48px;
+	-moz-appearance: none;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #110f0f;
+	border-radius: 4px;
+	background-color: #ffffff;
+	color: #00000088;
 }
 
 .dropdown option[disabled]:first-child {
-    color: #000000;
+	color: #000000;
 }
 
 .dropdown option[disabled]:first-child::before {
-    content: attr(value);
-    display: none;
+	content: attr(value);
+	display: none;
 	color: #000000;
 }
 
 .dropdown option {
-    color: #000000;
+	color: #000000;
 }
 
 .dropdown option[value=""] {
-    color: #c31f1f;
+	color: #c31f1f;
 	font-size: 15px;
 }
+
 .login__field.dropdown {
-    color: #000000; 
-	font-size: 15px;/* Set font color to white */
+	color: #000000;
+	font-size: 15px;
+	/* Set font color to white */
 }
 
 
@@ -360,6 +395,7 @@ p {
 	margin-bottom: 24px;
 	color: var(--main-color);
 }
+
 .projects-section-header p {
 	font-size: 1.6rem;
 	line-height: 32px;
@@ -368,6 +404,7 @@ p {
 	margin: 0;
 	color: var(--main-color);
 }
+
 .messages-section {
 	flex-shrink: 0;
 	padding-bottom: 32px;
@@ -378,8 +415,9 @@ p {
 	position: relative;
 	overflow: auto;
 	transition: all 300ms cubic-bezier(0.19, 1, 0.56, 1);
-	
+
 }
+
 .messages-section .messages-close {
 	position: absolute;
 	top: 12px;
@@ -390,11 +428,13 @@ p {
 	color: var(--main-color);
 	display: none;
 }
+
 .messages-section.show {
 	transform: translateX(0);
 	opacity: 1;
 	margin-left: 0;
 }
+
 .messages-section .projects-section-header {
 	position: sticky;
 	top: 0;
@@ -402,32 +442,38 @@ p {
 	padding: 32px 24px 0 24px;
 	background-color: var(--projects-section);
 }
+
 .message-box {
-	border-top: 1px ;
+	border-top: 1px;
 	padding: 16px;
 	display: flex;
 	align-items: flex-start;
 	width: 100%;
 }
+
 .message-box:hover {
 	background-color: #c0e0fa;
 	border-top-color: var(--link-color-hover);
 }
-.message-box:hover + .message-box {
+
+.message-box:hover+.message-box {
 	border-top-color: var(--link-color-hover);
 }
+
 .message-box img {
 	border-radius: 50%;
 	object-fit: cover;
 	width: 40px;
 	height: 40px;
 }
+
 .message-header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
 }
+
 .message-header .name {
 	font-size: 16px;
 	line-height: 24px;
@@ -435,16 +481,19 @@ p {
 	color: var(--main-color);
 	margin: 0;
 }
+
 .message-content {
 	padding-left: 16px;
 	width: 100%;
 }
+
 .star-checkbox input {
 	opacity: 0;
 	position: absolute;
 	width: 0;
 	height: 0;
 }
+
 .star-checkbox label {
 	width: 24px;
 	height: 24px;
@@ -453,10 +502,12 @@ p {
 	align-items: center;
 	cursor: pointer;
 }
-.star-checkbox input:checked + label svg {
+
+.star-checkbox input:checked+label svg {
 	fill: var(--star);
 	transition: 0.2s;
 }
+
 .message-line {
 	font-size: 14px;
 	line-height: 20px;
@@ -465,7 +516,7 @@ p {
 	opacity: 0.7;
 }
 
-.book-btn{
+.book-btn {
 	background-color: #0a74aa;
 	color: #fff;
 	border-radius: 0.5em;
@@ -477,22 +528,26 @@ p {
 	padding-right: 1em;
 }
 
-.form1{
+.form1 {
 	margin-top: -5%;
 	font-family: 'Montserrat';
 	font-size: 0.7rem;
-	
+
 }
-.form1 input{
+
+.form1 input {
 	border-radius: 1em;
 	background-color: #3094c3;
 	color: #fff;
 	padding-left: 0.4rem;
 	padding-right: 0.4rem;
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+
+::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
 	color: rgb(255, 255, 255);
-  }
+}
+
 @media screen and (max-width: 880px) {
 	.messages-section {
 		transform: translateX(100%);
@@ -502,20 +557,23 @@ p {
 		z-index: 2;
 		height: 100%;
 		width: 100%;
-   }
+	}
+
 	.messages-section .messages-close {
 		display: block;
-   }
+	}
 }
 
 @media screen and (max-width: 520px) {
-	
-	
-	.projects-section-header p, .projects-section-header .time {
+
+
+	.projects-section-header p,
+	.projects-section-header .time {
 		font-size: 18px;
-   }
+	}
 }
 
- button, a {
-	 cursor: pointer;
+button,
+a {
+	cursor: pointer;
 }

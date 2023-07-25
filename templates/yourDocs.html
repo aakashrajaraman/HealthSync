@@ -1,112 +1,114 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Your Documents</title>
 	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/yourDocs.css')}}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
 	<div class="sidebar">
 
 		<h1 class="logo" align="center">H<span>ealth</span>S<span>ync</span></h1>
-	
+
 		<ul class="sidenav">
-		  <li class="active"><i class="fa fa-home"></i><a href="{{url_for('patientRedir')}}"> Dashboard
-			  <span class="span1"><i class="fa fa-angle-right"></i></span>
-			</a>
-		  </li>
-		  <li><i class="fa fa-file"></i><a href="{{url_for('profile')}}"> Profile</a></li>
-		  <li><i class="fa fa-file"></i><a href="{{url_for('showDocs')}}"> View Documents</a></li>
-		  <li><i class="fa fa-calendar"></i><a href="{{url_for('uploadRedir')}}"> Upload Documents</a></li>
-		  <li><i class="fa fa-clone"></i><a href="{{url_for('recRedir')}}"> Recommendations</a></li>
-		  <li><i class="fa fa-file-text"></i><a href="{{url_for('logout')}}"> Log out</a></li>
-		  <br><br><br><br><br><br><br>
-		  <li><i class="fa fa-file-text"></i><a href="#"> Translate</a></li>
-		  <li id="google_translate_element"></li>
-	
-	
+			<li class="active"><i class="fa fa-home"></i><a href="{{url_for('patientRedir')}}"> Dashboard
+					<span class="span1"><i class="fa fa-angle-right"></i></span>
+				</a>
+			</li>
+			<li><i class="fa fa-file"></i><a href="{{url_for('profile')}}"> Profile</a></li>
+			<li><i class="fa fa-file"></i><a href="{{url_for('showDocs')}}"> View Documents</a></li>
+			<li><i class="fa fa-calendar"></i><a href="{{url_for('uploadRedir')}}"> Upload Documents</a></li>
+			<li><i class="fa fa-clone"></i><a href="{{url_for('recRedir')}}"> Recommendations</a></li>
+			<li><i class="fa fa-file-text"></i><a href="{{url_for('logout')}}"> Log out</a></li>
+			<br><br><br><br><br><br><br>
+			<li><i class="fa fa-file-text"></i><a href="#"> Translate</a></li>
+			<li id="google_translate_element"></li>
+
+
 		</ul>
-	  </div>
-
-<div class="main">
-	<br><br>
-	
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	
-
-	
-	
-	
-	
-	
-	
-	<div class="main-top">
-		<input type="text" name="" class="input" placeholder="Search">
-		<div class="top-right">
-			
-			<a href="#" class="user1"><img src="{{url_for('static',filename='/profile.png')}}" class="user">
-				
-			</a>
-		</div>
-		<div class="clearfix"></div>
 	</div>
-	
-	
-	
-	<br>
-	<br>
-	
 
-	<p align='center' style='font-size: 35px; font-weight: bold;'>Your Current Documents on Record</p>
+	<div class="main">
+		<br><br>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 
 
-	<br>
-	<br>
 
-	<div class="container"> 
-	<div class="maina-overview">
-		{% for doc in toBeRendered %}
-		  <div class="overviewCard">
-			<div class="overviewCard-icon overviewCard-icon--document">         
-			  <i class="far fa-file-alt"></i>
+
+
+
+
+
+		<div class="main-top">
+			<input type="text" name="" class="input" placeholder="Search">
+			<div class="top-right">
+
+				<a href="#" class="user1"><img src="{{url_for('static',filename='/profile.png')}}" class="user">
+
+				</a>
 			</div>
-			<div class="overviewCard-description">
-			  
-				<a href="{{ doc['pdf_link'] }}" class="overviewCard-title text-light">{{ doc['pdf_name'] }} </a>
-			
-			  <p class="overviewCard-subtitle">{{ doc['metadata'] }}</p>
-			  
-			</div>
-		
-		  </div>
-		{% endfor %}
-	  
-		<div class="overviewCard">
-		  <div class="overviewCard-icon overviewCard-icon--calendar">
-			<i class="far fa-file-alt"></i>
-		  </div>
-		  <div class="overviewCard-description">
-			<h3 class="overviewCard-title text-light">Blood Report</h3>
-			<p class="overviewCard-subtitle">Bood Report-2023. Details of blood test in lab</p>
-		  </div>
+			<div class="clearfix"></div>
 		</div>
-	 <!--
+
+
+
+		<br>
+		<br>
+
+
+		<p align='center' style='font-size: 35px; font-weight: bold;'>Your Current Documents on Record</p>
+
+
+		<br>
+		<br>
+
+		<div class="container">
+			<div class="maina-overview">
+				{% for doc in toBeRendered %}
+				<div class="overviewCard">
+					<div class="overviewCard-icon overviewCard-icon--document">
+						<i class="far fa-file-alt"></i>
+					</div>
+					<div class="overviewCard-description">
+
+						<a href="{{ doc['pdf_link'] }}" class="overviewCard-title text-light">{{ doc['pdf_name'] }} </a>
+
+						<p class="overviewCard-subtitle">{{ doc['metadata'] }}</p>
+
+					</div>
+
+				</div>
+				{% endfor %}
+
+				<div class="overviewCard">
+					<div class="overviewCard-icon overviewCard-icon--calendar">
+						<i class="far fa-file-alt"></i>
+					</div>
+					<div class="overviewCard-description">
+						<h3 class="overviewCard-title text-light">Blood Report</h3>
+						<p class="overviewCard-subtitle">Bood Report-2023. Details of blood test in lab</p>
+					</div>
+				</div>
+				<!--
 		<div class="overviewCard">
 		  <div class="overviewCard-icon overviewCard-icon--calendar">
 			<i class="far fa-file-alt"></i>
@@ -128,27 +130,29 @@
 		</div>
 	  </div>
 	 -->
-	  
-		  
-		  </div>
 
 
-      
+			</div>
+
+
+
+		</div>
+
+
+
+
 	</div>
-	
 
-
-	
 	</div>
 
-</div>
-
-<script type="text/javascript">
-	function googleTranslateElementInit() {
-		new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
-	}
-  </script>
-  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+		}
+	</script>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
+
 </html>

@@ -479,9 +479,9 @@
 		<div class="login__col">
 
 			<div class="messages-section">
-				
+
 				<div class="projects-section-header">
-					<p >CLINICS YOU COULD VISIT</p>
+					<p>CLINICS YOU COULD VISIT</p>
 				</div>
 				{% if response.clinic_data %}
 				<div class="messages">
@@ -513,9 +513,10 @@
 								Primary Doctor: {{ clinic.prim_doc }}
 							</p>
 							<p class="time">
-							<form action="/book-appointment" method="POST" class = "form1">
+							<form action="/book-appointment" method="POST" class="form1">
 								<input type="datetime-local" name="time" required>
-								<input type="text" name="reason" placeholder="Reason for Visit?" required style = "color:aliceblue">
+								<input type="text" name="reason" placeholder="Reason for Visit?" required
+									style="color:aliceblue">
 								<input type="hidden" name="clinic_username" value="{{ clinic.username }}">
 								<input type="hidden" name="symptoms" value="{{ response.observed_symptoms}}">
 								<input type="hidden" name="department" value="{{ response.specialist_department}}">
@@ -545,8 +546,9 @@
 		function googleTranslateElementInit() {
 			new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
 		}
-	  </script>
-	  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	</script>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>
