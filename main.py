@@ -366,8 +366,23 @@ def profile():
             'bio': bio,
             'gender': gender
         }
+        username = session['username']
+        bucket = client.get_bucket(bucket_path)
+        blobs = bucket.list_blobs(prefix=username+'/') 
+        prefixes = set()
+        toBeRendered =[]
 
-        return render_template('profile.html', patient_data = patient_data)
+        for blob in chain(*blobs.pages):
+            prefixes.add(blob.name.split('/')[0])
+            if blob.name.endswith('.pdf'):
+                pdf_name = blob.name
+                pdf_link = f"https://storage.googleapis.com/{bucket_path}/{blob.name}"
+                metadata = blob.metadata
+                tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link, 'metadata': metadata}
+                toBeRendered.append(tbu)
+        
+
+        return render_template('profile.html', patient_data = patient_data, toBeRendered = toBeRendered)
 
 @app.route('/showDocs', methods = ['POST', 'GET'])
 def showDocs():
