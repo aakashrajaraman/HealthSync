@@ -435,6 +435,12 @@ def profile():
                 pdf_name = pdf_name.split('/')[1]
                 pdf_link = f"https://storage.googleapis.com/{bucket_path}/{blob.name}"
                 metadata = blob.metadata
+                metadata = str(metadata)
+                metadata = metadata.replace('metadata', '')
+                metadata = metadata.replace('{', '')
+                metadata = metadata.replace('}', '')
+                metadata = metadata.replace("'", '')
+                metadata = metadata.replace(':', '')
                 tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link, 'metadata': metadata}
                 toBeRendered.append(tbu)
         return render_template('viewProfileClinic.html', patient_data = patient_data, toBeRendered = toBeRendered)
@@ -455,6 +461,12 @@ def showDocs():
             metadata = blob.metadata
             #only get pdfname from '/' onwards
             pdf_name = pdf_name.split('/')[1]
+            metadata = str(metadata)
+            metadata = metadata.replace('metadata', '')
+            metadata = metadata.replace('{', '')
+            metadata = metadata.replace('}', '')
+            metadata = metadata.replace("'", '')
+            metadata = metadata.replace(':', '')
 
             tbu = {'pdf_name': pdf_name, 'pdf_link': pdf_link, 'metadata': metadata}
             toBeRendered.append(tbu)
