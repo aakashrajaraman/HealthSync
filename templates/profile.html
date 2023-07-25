@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='/profile.css')}}">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="sidebar">
+
+		<h1 class="logo" align="center">H<span>ealth</span>S<span>ync</span></h1>
+
+		<ul class="sidenav">
+			<li class="active"><i class="fa fa-home"></i><a href="{{url_for('patientRedir')}}"> Dashboard
+					<span class="span1"><i class="fa fa-angle-right"></i></span>
+				</a>
+			</li>
+			<li><i class="fa fa-file"></i><a href="{{url_for('profile')}}"> Profile</a></li>
+			<li><i class="fa fa-file"></i><a href="{{url_for('showDocs')}}"> View Documents</a></li>
+			<li><i class="fa fa-calendar"></i><a href="{{url_for('uploadRedir')}}"> Upload Documents</a></li>
+			<li><i class="fa fa-clone"></i><a href="{{url_for('recRedir')}}"> Recommendations</a></li>
+			<li><i class="fa fa-file-text"></i><a href="{{url_for('logout')}}"> Log out</a></li>
+			<br><br><br><br><br><br><br>
+			<li><i class="fa fa-file-text"></i><a href="#"> Translate</a></li>
+			<li id="google_translate_element"></li>
+
+
+		</ul>
+	</div>
+
+    <aside class="profile-card">
+        <header >
+         
+      
+          <!-- the username -->
+          <h1>{{patient_data.name}}</h1>
+      
+          <h2> Age: {{patient_data.age}}</h2>
+          <h2> Gender: {{patient_data.gender}}</h2>
+      
+        </header>
+      
+        <div class="profile-bio">
+      
+          <p>
+            Address: {{patient_data.address}}
+          </p>
+          <p>
+            Email: {{patient_data.email}}
+          </p>
+          
+          <p>
+            Phone: {{patient_data.phone}}
+          </p>
+          <p>
+            User Bio: {{patient_data.user_bio}}
+          </p>
+          
+      
+        </div>
+      
+       
+      </aside>
+    
+</body>
+</html>
