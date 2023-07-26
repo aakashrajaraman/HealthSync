@@ -193,7 +193,7 @@ def patientRedir():
     user_bio = session['user_bio']
     age = current_date-datetime.datetime.strptime(session['date'], '%m%d%Y').date()
     years = age.days//365
-    return render_template('patient_dashboard.html', name = name, age = years, user_bio = user_bio)
+    return render_template('patient_dashboard.html', name = name, age = years, user_bio = user_bio, gender = session['gender'])
 
 @app.route('/clinicRedir', methods =['POST', 'GET'])
 def clinicRedir():
