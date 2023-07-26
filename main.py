@@ -18,25 +18,25 @@ os.environ['USE_TORCH'] = '1'
 from doctr.io import DocumentFile
 from doctr.models import ocr_predictor
 import io 
-predictor = torch.load(r"text_extraction_model.pth")
+predictor = torch.load(r"D:\Backup\Desktop\programs\HealthSync\text_extraction_model.pth")
 clinic_data = {}
 global userType
 apps = []
 app = Flask(__name__)
 
 # Load the rf model using pickle
-with open(r"final_rf_model.pkl", "rb") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\final_rf_model.pkl", "rb") as file:
     loaded_rf_model = pickle.load(file)
 
 # Load the specialized_dict from JSON
-with open(r"disease_specialist_dict.json", "r") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\disease_specialist_dict.json", "r") as file:
     loaded_specialized_dict = json.load(file)
 
 # Load the prediction_encoder classes from JSON
-with open("encoder_data.json", "r") as file:
+with open("D:\Backup\Desktop\programs\HealthSync\encoder_data.json", "r") as file:
     encoder_data = json.load(file)
 
-with open(r"X.pkl", "rb") as file:
+with open(r"D:\Backup\Desktop\programs\HealthSync\X.pkl", "rb") as file:
     X = pickle.load(file)
 
 symptoms = X.columns.values
@@ -169,8 +169,8 @@ def login():
                             session['clinic_data'] = clinic_data
                             
                             return render_template('clinic_dashboard.html', clinic_data = clinic_data, appointments = apps)
-                    else:#wrong password
-                        return render_template('login.html')
+            else:#wrong password
+                return render_template('login.html')
         else:#wrong username
             return render_template('login.html')
                 
