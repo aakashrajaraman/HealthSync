@@ -18,25 +18,25 @@ os.environ['USE_TORCH'] = '1'
 from doctr.io import DocumentFile
 from doctr.models import ocr_predictor
 import io 
-predictor = torch.load(r"D:\Backup\Desktop\programs\HealthSync\text_extraction_model.pth")
+predictor = torch.load(r"text_extraction_model.pth")
 clinic_data = {}
 global userType
 apps = []
 app = Flask(__name__)
 
 # Load the rf model using pickle
-with open(r"D:\Backup\Desktop\programs\HealthSync\final_rf_model.pkl", "rb") as file:
+with open(r"final_rf_model.pkl", "rb") as file:
     loaded_rf_model = pickle.load(file)
 
 # Load the specialized_dict from JSON
-with open(r"D:\Backup\Desktop\programs\HealthSync\disease_specialist_dict.json", "r") as file:
+with open(r"disease_specialist_dict.json", "r") as file:
     loaded_specialized_dict = json.load(file)
 
 # Load the prediction_encoder classes from JSON
-with open("D:\Backup\Desktop\programs\HealthSync\encoder_data.json", "r") as file:
+with open("encoder_data.json", "r") as file:
     encoder_data = json.load(file)
 
-with open(r"D:\Backup\Desktop\programs\HealthSync\X.pkl", "rb") as file:
+with open(r"X.pkl", "rb") as file:
     X = pickle.load(file)
 
 symptoms = X.columns.values
@@ -58,24 +58,14 @@ def to_camel_case(string):
     return re.sub(r"(?:^|_)(\w)", lambda x: x.group(1).capitalize(), string)
 
 
-
-
-
-
-
 load_dotenv()
 path = os.getenv('FIREBASE_KEY_PATH')
 bucket_path = "healthsync-c9b49.appspot.com"
 current_date = datetime.date.today()
 
-
-
 cred  = credentials.Certificate(path)
 firebase_admin.initialize_app(cred)
 client = storage.Client.from_service_account_json(path)
-
-
-
 
 app = Flask(__name__)
 app.secret_key = "HealthSync"
@@ -88,13 +78,12 @@ def index():
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST' and 'id' in request.form and 'password' in request.form and 'userType' in request.form:
-        
         id = request.form['id']
         password = request.form['password']
         userType = request.form['userType']
         if userType == 'patient':
             collection = "patients"
-            
+
         elif userType == 'clinic':
             collection = "clinics"
         
@@ -179,9 +168,6 @@ def login():
 def logout():
     session.clear()
     return render_template('login.html')
-
-
-
 
 @app.route('/userRedir', methods =['POST', 'GET'])
 def userRedir():
@@ -277,10 +263,6 @@ def userSignUp():
     }
     firestoreDB.collection('patients').add(patient_data)
 
-    
-
-
-
     return render_template('login.html')
 
 @app.route('/clinicSignUp', methods =['POST'])
@@ -324,9 +306,6 @@ def clinicSignUp():
         flash('Phone number already exists')
         return redirect(url_for('clinicRedir'))
 
-
-
-
     firestoreDB.collection('clinics').add(clinic_data)
     return render_template('login.html')
 
@@ -338,18 +317,13 @@ def upload():
     name = request.form['name']
     bucket = client.get_bucket(bucket_path)
     path = session['username']+'/'+name+'.pdf'
-    
-    blob = bucket.blob(path)
-    
-    
+    blob = bucket.blob(path)    
     blob.content_disposition = 'inline'
     blob.metadata = {'metadata': metadata}
 
     blob.upload_from_file(pdf)  
 
     return render_template('patient_dashboard.html')
-
-
 
 
 @app.route('/profile', methods = ['POST', 'GET'])
@@ -513,8 +487,6 @@ def reccomender():
         "observed_symptoms": observed_symptoms,
         "clinic_data": clinic_list  # Add the clinic data to the response dictionary
     }
-
-
 
         return render_template("recommender_html.html", response = response)
 
